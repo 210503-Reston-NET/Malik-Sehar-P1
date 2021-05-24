@@ -22,14 +22,28 @@ namespace StoreWebUI.Controllers
         // GET: InventoryController
         public ActionResult Index(int id)
         {
+            List<MLocation> mLocation = _iLocationBL.GetAllLocation();
             List<MInventory> listInv = _inventory.GetInventoryInStore(id);
-            /*foreach (MInventory inv in listInv)
+            foreach (MLocation store in mLocation)
+            {
+                if (store.Id == id)
+                {
+                    ViewData["StoreName"] = store.Name;
+                }
+            }
+            foreach (MInventory inv in listInv)
             {
                 List<MProduct> products = _inventory.GetProductsInventory(inv);
-
-                return View(products.Select(pro => new ProductVM(pro)).ToList());
-            }*/
-            return View(listInv.Select(pro => new InventoryVM(pro)).ToList());
+                foreach (MProduct pro in products)
+                {
+                    ViewData["ProductName"] = pro.Name;
+                }
+            }
+            if(listInv != null)
+            {
+                return View(listInv.Select(pro => new InventoryVM(pro)).ToList());
+            }
+            return View();
         }
 
         // GET: InventoryController/Details/5
@@ -73,7 +87,7 @@ namespace StoreWebUI.Controllers
             try
             {
 
-                return RedirectToAction("Products", "Index");
+                return RedirectToAction(nameof(Index));
             }
             catch
             {

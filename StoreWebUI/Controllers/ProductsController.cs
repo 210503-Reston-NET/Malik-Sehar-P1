@@ -57,7 +57,7 @@ namespace StoreWebUI.Controllers
                         StoreId = id,
                         ProductId = productVM.Barcode
                     });
-                    return RedirectToAction("Inventory","Edit");
+                    return RedirectToAction(nameof(Index));
                 }
                 return View();
             }
