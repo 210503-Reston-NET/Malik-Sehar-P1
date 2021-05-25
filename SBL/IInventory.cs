@@ -7,5 +7,7 @@ namespace SBL
         List<MProduct> GetProductsInventory(MInventory inventory);
         List<MInventory> GetInventoryInStore(int id);
         MInventory AddProductInInventory(MInventory mInventory);
+        MInventory UpdateInventory(MInventory Inventory);
+        MInventory GetInventoryById(int InvId);
     }
 }

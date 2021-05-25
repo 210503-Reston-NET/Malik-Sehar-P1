@@ -5,7 +5,7 @@
 }
 
 <h1>Index</h1>
-
+<!--@Html.ActionLink("Add Product","Create", new {Barcode = Model.First().Barcode}) -->
 
 <table class="table">
     <thead>
@@ -23,22 +23,23 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Barcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Barcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <!--@Html.ActionLink("Edit", "Edit", new { id = item.Barcode }) |-->
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Barcode })
+                </td>
+                        </tr>
+                }
+                    </tbody>
+                </table>

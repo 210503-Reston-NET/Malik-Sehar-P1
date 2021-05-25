@@ -59,7 +59,7 @@ namespace SDL
         {
             return _context.Customers
             .Select(
-                customer => new MCustomer(customer.Id, customer.Name, customer.PhoneNo, customer.Address)
+                customer => new MCustomer(customer.Id, customer.Name, customer.PhoneNo, customer.Address, customer.Password)
             ).ToList();
         }
         public List<MLocation> GetAllLocation()
@@ -105,7 +105,6 @@ namespace SDL
                 product => new MProduct(product.Barcode, product.Name, product.Price)
             ).ToList();
         }
-
         public MProduct GetAProduct(MProduct product)
         {
             MProduct found = _context.Products.FirstOrDefault(pro => pro.Barcode == product.Barcode && pro.Name == product.Name && pro.Price == product.Price);
@@ -140,6 +139,14 @@ namespace SDL
                 Address = store.Address
             }).ToList();
         }
+
+        public MInventory UpdateInventory(MInventory inventory)
+        {
+             _context.Inventories.Update(inventory); 
+             _context.SaveChanges();
+            return inventory;
+        }
+        
         public List<MInventory> GetInventoryInStore(int id)
         {
             return _context.Inventories.Where(inv => inv.StoreId == id).Select(
@@ -211,7 +218,7 @@ namespace SDL
         {
             MCustomer found = _context.Customers.FirstOrDefault(pro => pro.PhoneNo == customer.PhoneNo);
             if (found == null) return null;
-            return new MCustomer(found.Name, found.PhoneNo, found.Address);
+            return new MCustomer(found.Name, found.PhoneNo, found.Address, found.Password);
         }
 
         public MProduct searchAProduct(MProduct mProduct)
@@ -231,6 +238,13 @@ namespace SDL
                 });
             _context.SaveChanges();
             return mInventory;
+        }
+
+        public MInventory GetInventoryById(int id)
+        {
+            MInventory found = _context.Inventories.FirstOrDefault(inv => inv.Id == id);
+            if (found == null) return null;
+            return new MInventory(found.Id, found.StoreId, found.ProductId, found.Quantity);
         }
     }
 }

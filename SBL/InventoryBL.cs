@@ -24,5 +24,15 @@ namespace SBL
         {
             return _repo.GetProductsInventory(inventory);
         }
+
+        public MInventory UpdateInventory(MInventory Inventory)
+        {
+            return _repo.UpdateInventory(Inventory);
+        }
+
+        public MInventory GetInventoryById(int InvId)
+        {
+            return _repo.GetInventoryById(InvId);
+        }
     }
 }

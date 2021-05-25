@@ -22,28 +22,32 @@ namespace StoreWebUI.Controllers
         // GET: InventoryController
         public ActionResult Index(int id)
         {
-            List<MLocation> mLocation = _iLocationBL.GetAllLocation();
             List<MInventory> listInv = _inventory.GetInventoryInStore(id);
-            foreach (MLocation store in mLocation)
-            {
-                if (store.Id == id)
-                {
-                    ViewData["StoreName"] = store.Name;
-                }
-            }
-            foreach (MInventory inv in listInv)
-            {
-                List<MProduct> products = _inventory.GetProductsInventory(inv);
-                foreach (MProduct pro in products)
-                {
-                    ViewData["ProductName"] = pro.Name;
-                }
-            }
             if(listInv != null)
             {
                 return View(listInv.Select(pro => new InventoryVM(pro)).ToList());
             }
             return View();
+        }
+
+        public void GetNamesOfStoreAndPro(MInventory inventory)
+        {
+            List<MLocation> mLocation = _iLocationBL.GetAllLocation();
+            foreach (MLocation store in mLocation)
+            {
+                if (store.Id == inventory.StoreId)
+                {
+                    ViewData["StoreName"] = store.Name;
+                }
+            }
+            //MProduct products = _iproductBL.GetAProduct();
+            /*foreach (MProduct pro in products)
+            {
+                if (pro.Barcode == inventory.ProductId)
+                {
+                    ViewData["ProductName"] = pro.Name;
+                }
+            }*/
         }
 
         // GET: InventoryController/Details/5
@@ -76,7 +80,7 @@ namespace StoreWebUI.Controllers
         // GET: InventoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(new InventoryVM(_inventory.GetInventoryById(id)));
         }
 
         // POST: InventoryController/Edit/5
@@ -86,8 +90,12 @@ namespace StoreWebUI.Controllers
         {
             try
             {
-
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _inventory.UpdateInventory(new MInventory(inventoryVM.Id, inventoryVM.StoreId, inventoryVM.ProdId, inventoryVM.Quantity ));
+                    return RedirectToAction("Index", "Location");
+                }
+                return View();
             }
             catch
             {

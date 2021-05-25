@@ -50,7 +50,8 @@ namespace StoreWebUI.Controllers
                         {
                             Name = customersVM.Name,
                             PhoneNo = customersVM.PhoneNum,
-                            Address = customersVM.Address
+                            Address = customersVM.Address,
+                            Password = customersVM.Password
                         });
                     return RedirectToAction(nameof(Index));
                 }

@@ -5,15 +5,18 @@ namespace Models
     /// </summary>
     public class MCustomer
     {
-        public MCustomer(string name, string phoneNo, string address){
+        public MCustomer(string name, string phoneNo, string address, string password)
+        {
             this.Name = name;
             this.PhoneNo = phoneNo;
             this.Address = address;
+            this.Password = password;
         }
-        public MCustomer(string phoneNo){
+        public MCustomer(string phoneNo, string password){
             this.PhoneNo = phoneNo;
+            this.Password = password;
         }
-        public MCustomer(int id,string name, string phoneNo, string address) : this(name, phoneNo, address)
+        public MCustomer(int id,string name, string phoneNo, string address, string password) : this(name, phoneNo, address, password)
         {
             this.Id = id;
         }
@@ -22,7 +25,7 @@ namespace Models
         }
         public int Id {get; set;}
         public string Name {get; set;}
-
+        public string Password { get; set; }
         public string PhoneNo {get; set;}
         public string Address {get; set;}
 

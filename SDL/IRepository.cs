@@ -20,5 +20,7 @@ namespace SDL
         public void ItemToAddInOrders(MOrders orders);
         List<MInventory> GetInventoryInStore(int id);
         MInventory AddProductInInventory(MInventory mInventory);
+        MInventory UpdateInventory(MInventory inventory);
+        MInventory GetInventoryById(int id);
     }
 }
