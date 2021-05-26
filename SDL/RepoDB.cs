@@ -260,9 +260,9 @@ namespace SDL
         }
         public MInventory DeleteInventory(MInventory mInventory)
         {
-            /*MProduct proToBeDeleted = _context.Products.First(pro => pro.Barcode == mInventory.ProductId);
+            MProduct proToBeDeleted = _context.Products.First(pro => pro.Barcode == mInventory.ProductId);
             _context.Products.Remove(proToBeDeleted);
-            _context.SaveChanges();*/
+            _context.SaveChanges();
             MInventory toBeDeleted = _context.Inventories.First(inv => inv.Id == mInventory.Id);
             _context.Inventories.Remove(toBeDeleted);
             _context.SaveChanges();

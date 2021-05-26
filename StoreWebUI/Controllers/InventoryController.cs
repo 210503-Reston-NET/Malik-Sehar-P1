@@ -94,12 +94,12 @@ namespace StoreWebUI.Controllers
         // POST: InventoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, int storeid, IFormCollection collection)
+        public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                _inventory.DeleteInventory(_inventory.GetInventoryById(id));
-                return RedirectToAction("Index", new { id = storeid});
+                MInventory deletedList =  _inventory.DeleteInventory(_inventory.GetInventoryById(id));
+                return RedirectToAction("Index", new { id = deletedList.StoreId});
             }
             catch
             {
