@@ -30,26 +30,6 @@ namespace StoreWebUI.Controllers
             return View();
         }
 
-        public void GetNamesOfStoreAndPro(MInventory inventory)
-        {
-            List<MLocation> mLocation = _iLocationBL.GetAllLocation();
-            foreach (MLocation store in mLocation)
-            {
-                if (store.Id == inventory.StoreId)
-                {
-                    ViewData["StoreName"] = store.Name;
-                }
-            }
-            //MProduct products = _iproductBL.GetAProduct();
-            /*foreach (MProduct pro in products)
-            {
-                if (pro.Barcode == inventory.ProductId)
-                {
-                    ViewData["ProductName"] = pro.Name;
-                }
-            }*/
-        }
-
         // GET: InventoryController/Details/5
         public ActionResult Details(int id)
         {
@@ -65,10 +45,11 @@ namespace StoreWebUI.Controllers
         // POST: InventoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductVM productVM)
+        public ActionResult Create(ProductVM productVM, int id)
         {
             try
             {
+
                 return View();
             }
             catch
@@ -93,7 +74,8 @@ namespace StoreWebUI.Controllers
                 if (ModelState.IsValid)
                 {
                     _inventory.UpdateInventory(new MInventory(inventoryVM.Id, inventoryVM.StoreId, inventoryVM.ProdId, inventoryVM.Quantity ));
-                    return RedirectToAction("Index", "Location");
+                    MInventory inve = _inventory.GetInventoryById(id);
+                    return RedirectToAction("Index", "Inventory", new { id = inve.StoreId});
                 }
                 return View();
             }
@@ -106,17 +88,18 @@ namespace StoreWebUI.Controllers
         // GET: InventoryController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(new InventoryVM(_inventory.GetInventoryById(id)));
         }
 
         // POST: InventoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, int storeid, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _inventory.DeleteInventory(_inventory.GetInventoryById(id));
+                return RedirectToAction("Index", new { id = storeid});
             }
             catch
             {

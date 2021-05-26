@@ -7,6 +7,6 @@ namespace SBL
         List<MProduct> GetAllProducts();
         MProduct AddAProduct(MProduct product);
         MProduct GetAProduct(MProduct product);
-        MProduct searchAProduct(MProduct mProduct);
+        MProduct searchAProduct(string barcode);
     }
 }

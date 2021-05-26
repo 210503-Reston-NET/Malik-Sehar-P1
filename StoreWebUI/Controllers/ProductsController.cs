@@ -47,17 +47,24 @@ namespace StoreWebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _IproductBL.AddAProduct(new MProduct
+                    if(_inventory.GetProductExitInInventory(productVM.Barcode) == null)
                     {
-                        Barcode = productVM.Barcode,
-                        Name = productVM.Name,
-                        Price = productVM.Price
-                    });
-                    _inventory.AddProductInInventory(new MInventory { 
-                        StoreId = id,
-                        ProductId = productVM.Barcode
-                    });
-                    return RedirectToAction(nameof(Index), new { id });
+                        _inventory.AddProductInInventory(new MInventory
+                        {
+                            StoreId = id,
+                            ProductId = productVM.Barcode
+                        });
+                        if (_IproductBL.searchAProduct(productVM.Barcode) == null)
+                        {
+                            _IproductBL.AddAProduct(new MProduct
+                            {
+                                Barcode = productVM.Barcode,
+                                Name = productVM.Name,
+                                Price = productVM.Price
+                            });
+                        }
+                        return RedirectToAction("Index", "Inventory", new { id });
+                    }
                 }
                 return View();
             }

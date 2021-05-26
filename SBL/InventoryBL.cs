@@ -34,5 +34,14 @@ namespace SBL
         {
             return _repo.GetInventoryById(InvId);
         }
+        public MInventory DeleteInventory(MInventory mInventory)
+        {
+            return _repo.DeleteInventory(mInventory);
+        }
+
+        public MInventory GetProductExitInInventory(string Barcode)
+        {
+            return _repo.GetProductExitInInventory(Barcode);
+        }
     }
 }

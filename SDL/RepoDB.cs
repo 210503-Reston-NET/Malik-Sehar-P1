@@ -221,9 +221,9 @@ namespace SDL
             return new MCustomer(found.Name, found.PhoneNo, found.Address, found.Password);
         }
 
-        public MProduct searchAProduct(MProduct mProduct)
+        public MProduct searchAProduct(string barcode)
         {
-            MProduct found = _context.Products.FirstOrDefault(prod1 => prod1.Name == mProduct.Name && prod1.Price == mProduct.Price);
+            MProduct found = _context.Products.FirstOrDefault(prod1 => prod1.Barcode == barcode);
             if (found == null) return null;
             return new MProduct(found.Barcode, found.Name, found.Price);
         }
@@ -245,6 +245,28 @@ namespace SDL
             MInventory found = _context.Inventories.FirstOrDefault(inv => inv.Id == id);
             if (found == null) return null;
             return new MInventory(found.Id, found.StoreId, found.ProductId, found.Quantity);
+        }
+        public void DeleteAProduct(string barcode)
+        {
+            MProduct toBeDeleted = _context.Products.First(pro => pro.Barcode == barcode);
+            _context.Products.Remove(toBeDeleted);
+            _context.SaveChanges();
+        }
+        public MInventory GetProductExitInInventory(string Barcode)
+        {
+            MInventory AlreadyExits =  _context.Inventories.FirstOrDefault(invPro => invPro.ProductId == Barcode);
+            if (AlreadyExits == null) return null;
+            return new MInventory(AlreadyExits.Id, AlreadyExits.StoreId, AlreadyExits.ProductId, AlreadyExits.Quantity);
+        }
+        public MInventory DeleteInventory(MInventory mInventory)
+        {
+            /*MProduct proToBeDeleted = _context.Products.First(pro => pro.Barcode == mInventory.ProductId);
+            _context.Products.Remove(proToBeDeleted);
+            _context.SaveChanges();*/
+            MInventory toBeDeleted = _context.Inventories.First(inv => inv.Id == mInventory.Id);
+            _context.Inventories.Remove(toBeDeleted);
+            _context.SaveChanges();
+            return mInventory;
         }
     }
 }

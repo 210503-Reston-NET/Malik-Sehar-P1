@@ -9,5 +9,7 @@ namespace SBL
         MInventory AddProductInInventory(MInventory mInventory);
         MInventory UpdateInventory(MInventory Inventory);
         MInventory GetInventoryById(int InvId);
+        MInventory DeleteInventory(MInventory mInventory);
+        MInventory GetProductExitInInventory(string Barcode);
     }
 }

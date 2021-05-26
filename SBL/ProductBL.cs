@@ -13,10 +13,6 @@ namespace SBL
 
         public MProduct AddAProduct(MProduct product)
         {
-            if (_repo.GetAProduct(product) != null)
-            {
-                throw new Exception("Product already Exit!");
-            }
             return _repo.AddProduct(product);
         }
 
@@ -32,9 +28,9 @@ namespace SBL
             return _repo.GetAProduct(product);
         }
 
-        public MProduct searchAProduct(MProduct mProduct)
+        public MProduct searchAProduct(string barcode)
         {
-            return _repo.searchAProduct(mProduct);
+            return _repo.searchAProduct(barcode);
         }
     }
 }

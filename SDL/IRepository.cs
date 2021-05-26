@@ -14,7 +14,6 @@ namespace SDL
         MLocation AddStore(MLocation location);
         List<MInventory> GetProductInStock(MLocation mLocation);
         List<MProduct> GetProductsInventory(MInventory inventory);
-        MProduct searchAProduct(MProduct mProduct);
         MCustomer searchACustomer(MCustomer customer);
         List<MOrders> GetAllOrders(MLocation searchedOrdersInStore);
         public void ItemToAddInOrders(MOrders orders);
@@ -22,5 +21,8 @@ namespace SDL
         MInventory AddProductInInventory(MInventory mInventory);
         MInventory UpdateInventory(MInventory inventory);
         MInventory GetInventoryById(int id);
+        MInventory DeleteInventory(MInventory mInventory);
+        MProduct searchAProduct(string barcode);
+        MInventory GetProductExitInInventory(string Barcode);
     }
 }
