@@ -23,11 +23,7 @@ namespace StoreWebUI.Controllers
         public ActionResult Index(int id)
         {
             List<MInventory> listInv = _inventory.GetInventoryInStore(id);
-            if(listInv != null)
-            {
-                return View(listInv.Select(pro => new InventoryVM(pro)).ToList());
-            }
-            return View();
+            return View(listInv.Select(pro => new InventoryVM(pro)).ToList());
         }
 
         // GET: InventoryController/Details/5
@@ -61,7 +57,8 @@ namespace StoreWebUI.Controllers
         // GET: InventoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(new InventoryVM(_inventory.GetInventoryById(id)));
+            MInventory toEdit = _inventory.GetInventoryById(id);
+            return View(new InventoryVM(toEdit.Id, toEdit.StoreId, toEdit.ProductId, toEdit.Quantity));
         }
 
         // POST: InventoryController/Edit/5
@@ -88,7 +85,8 @@ namespace StoreWebUI.Controllers
         // GET: InventoryController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(new InventoryVM(_inventory.GetInventoryById(id)));
+            MInventory toDelete = _inventory.GetInventoryById(id);
+            return View(new InventoryVM(toDelete.Id, toDelete.StoreId, toDelete.ProductId, toDelete.Quantity));
         }
 
         // POST: InventoryController/Delete/5

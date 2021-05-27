@@ -25,6 +25,8 @@ namespace Models
 
         public string ProductId {get; set;}
         public int Quantity {get; set;}
+        public MLocation StoreFront { get; set; }
+        public MProduct Products { get; set; }
         public List<MLocation> storeFront {get; set;}
         public List<MProduct> products {get; set;}
     }

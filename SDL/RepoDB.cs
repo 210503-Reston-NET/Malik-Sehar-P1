@@ -54,7 +54,6 @@ namespace SDL
             _context.SaveChanges();
             return location;
         }
-
         public List<MCustomer> GetAllCustomers()
         {
             return _context.Customers
@@ -149,15 +148,31 @@ namespace SDL
         
         public List<MInventory> GetInventoryInStore(int id)
         {
-            return _context.Inventories.Where(inv => inv.StoreId == id).Select(
-                 invent => new MInventory
-                 {
-                     Id = invent.Id,
-                     StoreId = invent.StoreId,
-                     ProductId = invent.ProductId,
-                     Quantity = invent.Quantity
-                 }
-             ).ToList();
+            return (from i in _context.Inventories
+                    join p in _context.Products on i.ProductId equals p.Barcode
+                    join l in _context.Locations on i.StoreId equals l.Id
+                    where i.StoreId.Equals(id)
+                    let mProduct = new MProduct()
+                    {
+                        Barcode = p.Barcode,
+                        Name = p.Name,
+                        Price = p.Price
+                    }
+                    let mStore = new MLocation()
+                    {
+                        Id = l.Id,
+                        Name = l.Name,
+                        Address = l.Address
+                    }
+                    select new MInventory()
+                    {
+                        Id = i.Id,
+                        StoreId = l.Id,
+                        ProductId = p.Barcode,
+                        Quantity = i.Quantity,
+                        Products = mProduct,
+                        StoreFront = mStore
+                    }).ToList();
         }
 
         public List<MProduct> GetProductsInventory(MInventory inventory)

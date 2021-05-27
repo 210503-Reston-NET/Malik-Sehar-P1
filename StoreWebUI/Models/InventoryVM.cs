@@ -14,8 +14,18 @@ namespace StoreWebUI.Models
             StoreId = mInventory.StoreId;
             ProdId = mInventory.ProductId;
             Quantity = mInventory.Quantity;
-
+            Product = mInventory.Products;
+            StoreFront = mInventory.StoreFront;
         }
+
+        public InventoryVM(int id, int storeId, string prodId, int quantity)
+        {
+            Id = id;
+            StoreId = storeId;
+            ProdId = prodId;
+            Quantity = quantity;
+        }
+
         public InventoryVM(int storeId)
         {
             StoreId = storeId;
@@ -34,5 +44,8 @@ namespace StoreWebUI.Models
         public int StoreId { get; set; }
         public string ProdId { get; set; }
         public int Quantity { get; set; }
+
+        public MProduct Product { get;  set; }
+        public MLocation StoreFront { get;  set; }
     }
 }
