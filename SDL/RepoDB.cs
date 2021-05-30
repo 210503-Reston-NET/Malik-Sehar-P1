@@ -174,19 +174,12 @@ namespace SDL
                         StoreFront = mStore
                     }).ToList();
         }
-
-        public List<MProduct> GetProductsInventory(MInventory inventory)
+        /*public MProduct GetProductsInventory(string barcode)
         {
-            return _context.Products.Where(pro => pro.Barcode == inventory.ProductId).Select(
-                prod =>
-                new MProduct
-                {
-                    Barcode = prod.Barcode,
-                    Name = prod.Name,
-                    Price = prod.Price
-                }
-            ).ToList();
-        }
+            MProduct productDetails = _context.Products.FirstOrDefault(pro => pro.Barcode == barcode);
+            if (productDetails == null) return null;
+                return new MProduct(productDetails.Barcode, productDetails.Name, productDetails.Price);
+        }*/
 
         public void ItemToAdd(int orderid, List<MLineItems> lineItems)
         {
@@ -203,29 +196,43 @@ namespace SDL
             }
             _context.SaveChanges();
         }
-        // public void ItemToUpdateInventory(MOrders orders){
-        //     Entity.Inventory inventory = new Entity.Inventory{
 
-        //     }
-        // }
         public void ItemToAddInOrders(MOrders orders)
         {
+            //ItemToUpdateInventory(orders);
             MOrders newOrder = new MOrders
             {
                 CustID = orders.CustID,
                 LocationID = orders.LocationID,
-                Total = orders.Total
+                Total = orders.Total,
+                date = DateTime.Now
             };
             try
             {
                 MOrders AddedOrded = _context.Orders.Add(newOrder).Entity;
                 _context.SaveChanges();
                 ItemToAdd(AddedOrded.Id, orders.lineItems);
-                // ItemToUpdateInventory(orders);
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        private void ItemToUpdateInventory(MOrders orders)
+        {
+            
+            foreach (MLineItems order in orders.lineItems)
+            {
+              if(GetProductExitInInventory(order.ProId) != null){
+                    UpdateInventory(new MInventory
+                    {
+                        Id = GetInventoryById(GetProductExitInInventory(order.ProId).Id).Id,
+                        StoreId = orders.LocationID,
+                        ProductId = order.ProId,
+                        Quantity = GetInventoryById(GetProductExitInInventory(order.ProId).Id).Quantity - order.Quantity
+                    });
+              }
             }
         }
 
@@ -261,12 +268,6 @@ namespace SDL
             if (found == null) return null;
             return new MInventory(found.Id, found.StoreId, found.ProductId, found.Quantity);
         }
-        public void DeleteAProduct(string barcode)
-        {
-            MProduct toBeDeleted = _context.Products.First(pro => pro.Barcode == barcode);
-            _context.Products.Remove(toBeDeleted);
-            _context.SaveChanges();
-        }
         public MInventory GetProductExitInInventory(string Barcode)
         {
             MInventory AlreadyExits =  _context.Inventories.FirstOrDefault(invPro => invPro.ProductId == Barcode);
@@ -282,6 +283,24 @@ namespace SDL
             _context.Inventories.Remove(toBeDeleted);
             _context.SaveChanges();
             return mInventory;
+        }
+
+        public MProduct GetProductById(string Barcode)
+        {
+            return _context.Products.Find(Barcode);
+        }
+
+        public MProduct DeleteAProduct(MProduct mProduct)
+        {
+            MProduct toBeDeleted = _context.Products.First(pro => pro.Barcode == mProduct.Barcode);
+            _context.Products.Remove(toBeDeleted);
+            _context.SaveChanges();
+            return mProduct;
+        }
+
+        public List<MProduct> GetProductsInventory(MInventory inventory)
+        {
+            throw new NotImplementedException();
         }
     }
 }

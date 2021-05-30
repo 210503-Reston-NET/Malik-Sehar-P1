@@ -39,7 +39,7 @@
             <td>
                 @Html.ActionLink("Add Products", "Create", "Products", new {  id=item.Id }) |
                 @Html.ActionLink("View Inventory", "Index", "Inventory", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Order here", "Index","Products", new { id=item.Id })
             </td>
         </tr>
 }

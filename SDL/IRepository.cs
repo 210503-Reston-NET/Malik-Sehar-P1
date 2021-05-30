@@ -24,5 +24,7 @@ namespace SDL
         MInventory DeleteInventory(MInventory mInventory);
         MProduct searchAProduct(string barcode);
         MInventory GetProductExitInInventory(string Barcode);
+        MProduct GetProductById(string Barcode);
+        MProduct DeleteAProduct(MProduct mProduct);
     }
 }

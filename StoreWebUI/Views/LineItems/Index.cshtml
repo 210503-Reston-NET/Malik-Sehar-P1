@@ -1,11 +1,14 @@
-﻿@model IEnumerable<StoreWebUI.Models.InventoryVM>
+﻿@model IEnumerable<StoreWebUI.Models.LineItemVM>
 
 @{
-    ViewData["Title"] = "Shop Products";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -13,10 +16,10 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                Store
+                @Html.DisplayNameFor(model => model.ProductId)
             </th>
             <th>
-                Product
+                @Html.DisplayNameFor(model => model.OrderId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
@@ -31,16 +34,18 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StoreFront.Name)
+                @Html.DisplayFor(modelItem => item.ProductId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.Name)
+                @Html.DisplayFor(modelItem => item.OrderId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.ActionLink("Order", "Order", new { id=item.Id })
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SBL;
+using LearnASPNETCoreMVCWithRealApps.Helpers;
 
 namespace StoreWebUI.Controllers
 {
@@ -14,23 +15,103 @@ namespace StoreWebUI.Controllers
     {
         private IProductBL _IproductBL;
         private IInventory _inventory;
+        private ILineItem _iLineItem;
+        private MOrders _openOrder;
         // GET: ProductsController
-        public ProductsController( IProductBL productBL, IInventory inventory)
+        public ProductsController( IProductBL productBL, IInventory inventory, ILineItem lineItem)
         {
             _IproductBL = productBL;
             _inventory = inventory;
-        }
-        public ActionResult Index()
-        {
-            return View(_IproductBL.GetAllProducts().Select(pro => new ProductVM(pro)).ToList());
+            _iLineItem = lineItem;
         }
 
-        // GET: ProductsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Index(int id)
         {
-            return View();
+            List<MInventory> listInv = _inventory.GetInventoryInStore(id);
+            return View(listInv.Select(pro => new InventoryVM(pro)).ToList());
         }
+        public ActionResult Order(int id)
+        {
+            MInventory inventory = _inventory.GetInventoryById(id);
+            MProduct productSelected = _IproductBL.searchAProduct(inventory.ProductId);
+            if (inventory.Quantity > 0)
+            {
+                _openOrder = new MOrders
+                {
+                    Total = 0,
+                    CustID = 1,
+                    LocationID = inventory.StoreId
+                };
+                if (SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart") == null)
+                {
+                    List<MLineItems> cart = new List<MLineItems>();
+                    MLineItems lineI = new MLineItems(productSelected.Barcode, 1);
+                    lineI.product = productSelected;
+                    cart.Add(lineI);
+                    _openOrder.lineItems = cart;
+                    _openOrder.UpdateTotal();
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                }
+                else
+                {
+                    List<MLineItems> cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
+                    int index = isExist(inventory.ProductId);
+                    if (index != -1)
+                    {
+                        _openOrder.lineItems = cart;
+                        cart[index].Quantity++;
+                        _openOrder.UpdateTotal();
+                    }
+                    else
+                    {
+                        MLineItems lineI = new MLineItems(productSelected.Barcode, 1);
+                        lineI.product = productSelected;
+                        _openOrder.lineItems = cart;
+                        _openOrder.UpdateTotal();
+                        cart.Add(lineI);
+                    }
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                }
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "order", _openOrder);
+                return RedirectToAction("Checkout", new { checkout = false });
+            }
+            else
+            {
+                return RedirectToAction("Index", new { id = inventory.StoreId });
+            }
 
+        }
+        private int isExist(string id)
+        {
+            List<MLineItems> cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
+            for (int i = 0; i < cart.Count; i++)
+            {
+                if (cart[i].product.Barcode.Equals(id))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        public ActionResult Checkout(bool checkout)
+        {
+            var cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
+            ViewBag.cart = cart;
+            var order = SessionHelper.GetObjectFromJson<MOrders>(HttpContext.Session, "order");
+            ViewBag.order = order;
+            var grandTotal = cart.Sum(item => item.product.Price * item.Quantity);
+            ViewBag.Total = grandTotal;
+            order.Total = grandTotal;
+            if (cart != null && checkout == false)
+            {
+                return View();
+            }else
+            {
+                _iLineItem.ItemToAddInOrders(order);
+                HttpContext.Session.Clear();
+                return RedirectToAction("Index", "Location");
+            }
+        }
         // GET: ProductsController/Create
         public ActionResult Create()
         {
@@ -94,21 +175,29 @@ namespace StoreWebUI.Controllers
                 return View();
             }
         }
-
-        // GET: ProductsController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult ViewAllProducts()
         {
-            return View();
+            return View(_IproductBL.GetAllProducts().Select(product => new ProductVM(product)).ToList());
+        }
+        // GET: ProductsController/Delete/5
+        public ActionResult Delete(string barcode)
+        {
+            return View(new ProductVM(_IproductBL.GetProductById(barcode)));
         }
 
         // POST: ProductsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (_inventory.GetProductExitInInventory(id) == null)
+                {
+                       _IproductBL.DeleteAProduct(_IproductBL.GetProductById(id));
+                        return RedirectToAction(nameof(ViewAllProducts));
+                }
+                return View();
             }
             catch
             {
