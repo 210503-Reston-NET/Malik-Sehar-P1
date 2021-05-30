@@ -93,6 +93,15 @@ namespace StoreWebUI.Controllers
             }
             return -1;
         }
+        [Route("remove/{id}")]
+        public IActionResult Remove(string id)
+        {
+            List<MLineItems> cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
+            int index = isExist(id);
+            cart.RemoveAt(index);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return RedirectToAction("Index", "Location");
+        }
         public ActionResult Checkout(bool checkout)
         {
             var cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
