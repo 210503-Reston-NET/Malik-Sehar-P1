@@ -37,9 +37,10 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.ActionLink("Add Products", "Create", "Products", new {  id=item.Id }) |
+                @Html.ActionLink("Add Products", "Create", "Products", new { id = item.Id }) |
                 @Html.ActionLink("View Inventory", "Index", "Inventory", new { id = item.Id }) |
-                @Html.ActionLink("Order here", "Index","Products", new { id=item.Id })
+                @Html.ActionLink("Order here", "Index", "Products", new { id = item.Id }) |
+                @Html.ActionLink("View Orders", "ViewOrders", "Orders", new { id = item.Id })
             </td>
         </tr>
 }

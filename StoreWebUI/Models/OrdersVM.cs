@@ -13,9 +13,6 @@ namespace StoreWebUI.Models
             Id = mOrders.Id;
             Total = mOrders.Total;
             date = mOrders.date;
-            CustomerId = mOrders.CustID;
-            LocationId = mOrders.LocationID;
-            lineItems = mOrders.lineItems;
             customer = mOrders.customer;
             StoreFront = mOrders.storeFronts;
         }

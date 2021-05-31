@@ -5,7 +5,7 @@
 }
 
 <h1>Checkout</h1>
-<a href='@Url.Action("Index", "Location")' class="btn btn-primary pull-right"></a>
+<a href='@Url.Action("Index", "Location")' class="btn btn-primary pull-right">Continue Shopping</a>
 <table class="table">
     <thead>
         <tr>
@@ -43,7 +43,7 @@
                 <td><a asp-controller="Products" asp-action="remove" asp-route-id="@item.product.Barcode">Remove</a></td>
             </tr>
         }
-        <tr><td colspan="4"><p><h3 class="text-left">Grand Total</h3><span class="text-right">@ViewBag.Total</span></p></td></tr>
+        <tr><td colspan="5"><p><h3 class="text-left">Grand Total</h3><span class="text-right">@ViewBag.Total</span></p></td></tr>
     </tbody>
 </table>
 <div><a href='@Url.Action("Checkout", new { checkout = true })' class="btn btn-primary pull-right">Checkout</a></div>

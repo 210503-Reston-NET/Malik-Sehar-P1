@@ -6,20 +6,46 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using SBL;
 namespace StoreWebUI.Controllers
 {
     public class OrdersController : Controller
     {
+        private ILineItem _lineItems;
+        private ICustomerBL _iCustomerBL;
+        private ILocationBL _ilocationBL;
+        private IInventory _inventory;
+        private IProductBL _iProduct;
+        public OrdersController(ILineItem ilineItems, ICustomerBL customerBL, ILocationBL locationBL, IInventory iinventory, IProductBL productBL)
+        {
+            _lineItems = ilineItems;
+            _iCustomerBL = customerBL;
+            _ilocationBL = locationBL;
+            _inventory = iinventory;
+            _iProduct = productBL;
+        }
         // GET: OrdersController
         public ActionResult Index()
         {
+            List<MOrders> orderList = _lineItems.GetOrdersWithAllLocations();
+            Console.WriteLine(orderList.ToString());
             return View();
         }
-        public ActionResult CheckOut(MOrders orders)
+        public ActionResult ViewOrders(int id)
         {
-            orders.lineItems.Select(or => new LineItemVM(or));
-            return View(orders.lineItems.Select(or => new LineItemVM(or)));
+            List<MOrders> orderList = _lineItems.GetOrderByLocationId(id);
+            if(orderList.Count > 0)
+            {
+                foreach (MOrders order in orderList)
+                {
+                    if (order.lineItems != null)
+                    {
+                       ViewBag.Order = order;
+                       return View(order.lineItems.Select(order => new LineItemVM(order)).ToList());
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Location");
         }
         // GET: OrdersController/Details/5
         public ActionResult Details(int id)
