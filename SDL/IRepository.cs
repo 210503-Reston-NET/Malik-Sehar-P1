@@ -20,6 +20,8 @@ namespace SDL
         MInventory UpdateInventory(MInventory inventory);
         MInventory GetInventoryById(int id);
         MInventory DeleteInventory(MInventory mInventory);
+        //Products Operations
+        MProduct UpdateProduct(MProduct product);
         MProduct searchAProduct(string barcode);
         MInventory GetProductExitInInventory(string Barcode);
         MProduct GetProductById(string Barcode);

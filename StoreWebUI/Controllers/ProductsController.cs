@@ -170,19 +170,25 @@ namespace StoreWebUI.Controllers
         }
 
         // GET: ProductsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string barcode)
         {
-            return View();
+            MProduct toEdit = _IproductBL.GetProductById(barcode);
+            return View(new ProductVM(toEdit));
         }
 
         // POST: ProductsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(string barcode, ProductVM productVM)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _IproductBL.UpdateProduct(new MProduct(productVM.Barcode, productVM.Name, productVM.Price));
+                    return RedirectToAction(nameof(ViewAllProducts));
+                }
+                return View();
             }
             catch
             {

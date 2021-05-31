@@ -41,6 +41,12 @@ namespace SDL
             _context.SaveChanges();
             return product;
         }
+        public MProduct UpdateProduct(MProduct product)
+        {
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            return product;
+        }
 
         public MLocation AddStore(MLocation location)
         {

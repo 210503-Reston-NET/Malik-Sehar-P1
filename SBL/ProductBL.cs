@@ -39,5 +39,10 @@ namespace SBL
         {
             return _repo.searchAProduct(barcode);
         }
+
+        public MProduct UpdateProduct(MProduct product)
+        {
+            return _repo.UpdateProduct(product);
+        }
     }
 }

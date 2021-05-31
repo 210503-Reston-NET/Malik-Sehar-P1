@@ -10,5 +10,6 @@ namespace SBL
         MProduct searchAProduct(string barcode);
         MProduct GetProductById(string Barcode);
         public MProduct DeleteAProduct(MProduct mProduct);
+        MProduct UpdateProduct(MProduct product);
     }
 }
