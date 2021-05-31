@@ -8,5 +8,7 @@ namespace SBL
         MCustomer AddCustomer(MCustomer customer);
         MCustomer searchACustomer(MCustomer customer);
         public MCustomer GetCustomerById(int id);
+        MCustomer UpdateCustomer(MCustomer customer);
+        MCustomer DeleteCustomer(MCustomer mCustomer);
     }
 }

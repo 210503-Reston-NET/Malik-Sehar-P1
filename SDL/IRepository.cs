@@ -24,7 +24,9 @@ namespace SDL
         MInventory GetProductExitInInventory(string Barcode);
         MProduct GetProductById(string Barcode);
         MProduct DeleteAProduct(MProduct mProduct);
-
+        //All Customer Operations
+        MCustomer UpdateCustomer(MCustomer customer);
+        MCustomer DeleteCustomer(MCustomer mCustomer);
         //All Methods to Get Orders List
         List<MOrders> GetOrdersWithAllLocations();
         List<MLineItems> GetAllOrders(int searchedOrdersInStore);

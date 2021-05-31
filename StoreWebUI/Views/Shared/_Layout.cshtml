@@ -22,10 +22,18 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Location" asp-action="Index">Stores</a></li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="ViewAllProducts">Products</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="ViewAllProducts">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Customers</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Customers
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">
+                                    Customers List
+                                </a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="SearchCustomerByPhone">Search Customer</a>
+                            </div>
                         </li>
                     </ul>
                     <ul class="navbar-nav navbar-right">

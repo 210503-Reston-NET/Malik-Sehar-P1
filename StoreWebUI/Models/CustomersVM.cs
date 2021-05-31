@@ -28,7 +28,6 @@ namespace StoreWebUI.Models
         public string PhoneNum { get; set; }
         [Required]
         public string Address { get; set; }
-        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

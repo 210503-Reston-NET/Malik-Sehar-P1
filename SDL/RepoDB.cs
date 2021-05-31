@@ -61,6 +61,12 @@ namespace SDL
                 customer => new MCustomer(customer.Id, customer.Name, customer.PhoneNo, customer.Address, customer.Password)
             ).ToList();
         }
+        public MCustomer UpdateCustomer(MCustomer customer)
+        {
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return customer;
+        }
         public List<MOrders> GetOrdersWithAllLocations()
         {
             return _context.Orders
@@ -278,7 +284,7 @@ namespace SDL
         {
             MCustomer found = _context.Customers.FirstOrDefault(pro => pro.PhoneNo == customer.PhoneNo);
             if (found == null) return null;
-            return new MCustomer(found.Name, found.PhoneNo, found.Address, found.Password);
+            return new MCustomer(found.Id, found.Name, found.PhoneNo, found.Address, found.Password);
         }
 
         public MProduct searchAProduct(string barcode)
@@ -321,6 +327,13 @@ namespace SDL
             _context.Inventories.Remove(toBeDeleted);
             _context.SaveChanges();
             return mInventory;
+        }
+        public MCustomer DeleteCustomer(MCustomer mCustomer)
+        {
+            MCustomer cusToBeDeleted = _context.Customers.First(cus => cus.Id == mCustomer.Id);
+            _context.Customers.Remove(cusToBeDeleted);
+            _context.SaveChanges();
+            return mCustomer;
         }
 
         public MProduct GetProductById(string Barcode)
