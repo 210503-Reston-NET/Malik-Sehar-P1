@@ -13,7 +13,6 @@ namespace SDL
         MLocation GetAStore(MLocation location);
         MLocation AddStore(MLocation location);
         List<MInventory> GetProductInStock(MLocation mLocation);
-        List<MProduct> GetProductsInventory(MInventory inventory);
         MCustomer searchACustomer(MCustomer customer);
         public void ItemToAddInOrders(MOrders orders);
         List<MInventory> GetInventoryInStore(int id);

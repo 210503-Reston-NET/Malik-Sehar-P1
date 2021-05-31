@@ -47,6 +47,10 @@ namespace StoreWebUI.Controllers
             }
             return RedirectToAction("Index", "Location");
         }
+        public ActionResult ViewOrdersByCustomerId(int id)
+        {
+            return View();
+        }
         // GET: OrdersController/Details/5
         public ActionResult Details(int id)
         {

@@ -107,14 +107,19 @@ namespace StoreWebUI.Controllers
             var cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
             var order = SessionHelper.GetObjectFromJson<MOrders>(HttpContext.Session, "order");
-            ViewBag.order = order;
-            var grandTotal = cart.Sum(item => item.product.Price * item.Quantity);
-            ViewBag.Total = grandTotal;
-            order.Total = grandTotal;
+            if (cart == null)
+            {
+                return View();
+            }
+                ViewBag.order = order;
+                var grandTotal = cart.Sum(item => item.product.Price * item.Quantity);
+                ViewBag.Total = grandTotal;
+                order.Total = grandTotal;
             if (cart != null && checkout == false)
             {
                 return View();
-            }else
+            }
+            else
             {
                 _iLineItem.ItemToAddInOrders(order);
                 HttpContext.Session.Clear();

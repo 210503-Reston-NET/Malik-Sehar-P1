@@ -20,10 +20,6 @@ namespace SBL
             return _repo.GetInventoryInStore(id);
         }
 
-        public List<MProduct> GetProductsInventory(MInventory inventory)
-        {
-            return _repo.GetProductsInventory(inventory);
-        }
 
         public MInventory UpdateInventory(MInventory Inventory)
         {

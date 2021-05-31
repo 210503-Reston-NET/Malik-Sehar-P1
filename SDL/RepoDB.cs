@@ -335,10 +335,5 @@ namespace SDL
             _context.SaveChanges();
             return mProduct;
         }
-
-        public List<MProduct> GetProductsInventory(MInventory inventory)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
