@@ -108,9 +108,9 @@ namespace SDL
                             locat.Address)
                 ).ToList();
         }
-        public List<MOrders> GetOrderByCustomerId(int id, string dategiven)
+        public List<MOrders> GetOrderByCustomerId(int id)
         {
-            List<MOrders> mOrders = _context.Orders.Select(
+            /*List<MOrders> mOrders = _context.Orders.Select(
                 order => new MOrders()
                 {
                     Id = order.Id,
@@ -136,46 +136,47 @@ namespace SDL
                     Total = order.Total
 
                 }
-            ).OrderBy(item => item.date).Where(order => order.CustID == id).ToList();
+            ).OrderBy(item => item.date).Where(order => order.CustID == id).ToList();*/
+
+            List<MOrders> mOrders =
+                (from o in _context.Orders
+                join l in _context.Locations on o.LocationID equals l.Id
+                where o.CustID.Equals(id)
+                select new MOrders
+                {
+                    Id = o.Id,
+                    CustID = o.CustID,
+                    LocationID = o.LocationID,
+                    date = o.date,
+                    storeFronts = new MLocation { 
+                    Id = l.Id,
+                    Name=l.Name,
+                    Address = l.Address
+                    },
+                    Total = o.Total
+                }).ToList();
             return mOrders;
         }
-        public List<MOrders> GetOrderByLocationId(int id, string date)
+        public List<MOrders> GetOrderByLocationId(int id)
         {
-            List<MOrders> mOrders = _context.Orders.Select(
-                order => new MOrders()
-                {
-                    Id = order.Id,
-                    CustID = order.CustID,
-                    LocationID = order.LocationID,
-                    date = order.date,
-                    storeFronts = order.storeFronts,
-                    customer = order.customer,
-                    lineItems = _context.LineItems.Select(
-                        orderitem => new MLineItems()
+            List<MOrders> mOrders = 
+                (from o in _context.Orders
+                    join l in _context.Locations on o.LocationID equals l.Id
+                    where o.LocationID.Equals(id)
+                    select new MOrders
+                    {
+                        Id = o.Id,
+                        CustID = o.CustID,
+                        LocationID = o.LocationID,
+                        date = o.date,
+                        storeFronts = new MLocation
                         {
-                            OrderID = orderitem.OrderID,
-                            ProId = orderitem.ProId,
-                            Quantity = orderitem.Quantity,
-                            product = _context.Products.Select(pro => new MProduct
-                            {
-                                Barcode = pro.Barcode,
-                                Name = pro.Name,
-                                Price = pro.Price,
-                            }).Where(p => p.Barcode == orderitem.ProId).FirstOrDefault(),
-                            orders = orderitem.orders
-                        }).Where(o => o.OrderID == order.Id).ToList(),
-                    Total = order.Total
-                }
-            ).Where(order => order.LocationID == id).ToList();
-            switch (date)
-            {
-                case "date":
-                    mOrders.OrderBy(x => x.date);
-                    break;
-                default:
-                    mOrders.OrderByDescending(x => x.date);
-                    break;
-            }
+                            Id = l.Id,
+                            Name = l.Name,
+                            Address = l.Address
+                        },
+                        Total = o.Total
+                    }).ToList();
             return mOrders;
         }
         public List<MLineItems> GetAllOrders(int searchedListItemsByOrderId)

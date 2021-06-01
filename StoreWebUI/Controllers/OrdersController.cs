@@ -37,17 +37,21 @@ namespace StoreWebUI.Controllers
         }
         public ActionResult ViewOrdersByCustID(int id, string date)
         {
-            ViewData["dateSorting"] = string.IsNullOrEmpty(date) ? "date" : "";
-            List<MOrders> orderList = _lineItems.GetOrderByCustomerId(id, date);
+            ViewData["dateSorting"] = string.IsNullOrEmpty(date)? "date" :  "";
+            ViewData["totalsorting"] = string.IsNullOrEmpty(date) ? "total" : "";
+            List<MOrders> orderList = _lineItems.GetOrderByCustomerId(id);
             if (orderList.Count > 0)
             {
                 if (date == "date")
                 {
-                    return View(orderList.Select(order => new OrdersVM(order)).OrderBy(sort => sort.date).Take(10).ToList());
+                    return View(orderList.Select(order => new OrdersVM(order)).OrderBy(sort => sort.date).ToList());
 
                 }
-                else
+                else if(date == "total")
                 {
+                    return View(orderList.Select(order => new OrdersVM(order)).OrderBy(sort => sort.Total).ToList());
+                }
+                else{
                     return View(orderList.Select(order => new OrdersVM(order)).ToList());
                 }
             }
@@ -55,14 +59,21 @@ namespace StoreWebUI.Controllers
         }
         public ActionResult ViewOrders(int id, string date)
         {
+            ViewBag.Locid = id;
             ViewData["dateSorting"] = string.IsNullOrEmpty(date) ? "date" : "";
-            List<MOrders> orderList = _lineItems.GetOrderByLocationId(id,date);
+            ViewData["totalsorting"] = string.IsNullOrEmpty(date) ? "total" : "";
+            List<MOrders> orderList = _lineItems.GetOrderByLocationId(id);
+            
             if (orderList.Count > 0)
             {
-                if (date == "Date")
+                if (date == "date")
                 {
-                    return View(orderList.Select(order => new OrdersVM(order)).OrderBy(sort => sort.date).Take(5).ToList());
+                    return View(orderList.Select(order => new OrdersVM(order)).OrderBy(sort => sort.date).ToList());
                     
+                }
+                else if (date == "total")
+                {
+                    return View(orderList.Select(order => new OrdersVM(order)).OrderBy(sort => sort.Total).ToList());
                 }
                 else
                 {

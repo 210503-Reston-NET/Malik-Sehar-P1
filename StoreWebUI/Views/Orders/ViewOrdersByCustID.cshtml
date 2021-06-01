@@ -16,7 +16,9 @@
                 <a asp-action="ViewOrdersByCustID" asp-route-id="1" asp-route-date="@ViewData["dateSorting"]" class="text-dark" style="text-decoration:none;">
                 Date</a>
             </th>
-            <th>Total</th>
+            <th><a asp-action="ViewOrdersByCustID" asp-route-id="1" asp-route-date="@ViewData["totalsorting"]" class="text-dark" style="text-decoration:none;">
+    Total
+</a></th>
             <th></th>
         </tr>
     </thead>
