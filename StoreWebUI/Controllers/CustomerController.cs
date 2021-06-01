@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SBL;
 using StoreWebUI.Models;
 using Models;
-
+using Serilog;
 namespace StoreWebUI.Controllers
 {
     public class CustomerController : Controller
@@ -20,6 +20,8 @@ namespace StoreWebUI.Controllers
         }
         public ActionResult Index()
         {
+            var myLog = Log.ForContext<CustomerController>();
+            myLog.Information("Customer View List Rendered");
             return View(_icustomerBL.GetAllCustomers().Select(cust => new CustomersVM(cust)).ToList());
         }
 

@@ -1,0 +1,359 @@
+2021-05-31 18:27:07.833 -07:00 [INF] Here is a log with context from the main method
+2021-05-31 18:27:09.475 -07:00 [DBG] Hosting starting
+2021-05-31 18:27:09.549 -07:00 [INF] User profile is available. Using 'C:\Users\sehar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-05-31 18:27:09.559 -07:00 [DBG] Reading data from file 'C:\Users\sehar\AppData\Local\ASP.NET\DataProtection-Keys\key-f35beff6-b305-4390-8487-8668ca333659.xml'.
+2021-05-31 18:27:09.602 -07:00 [DBG] Found key {f35beff6-b305-4390-8487-8668ca333659}.
+2021-05-31 18:27:09.625 -07:00 [DBG] Considering key {f35beff6-b305-4390-8487-8668ca333659} with expiration date 2021-08-18 19:48:48Z as default key.
+2021-05-31 18:27:09.642 -07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2021-05-31 18:27:09.646 -07:00 [DBG] Decrypting secret element using Windows DPAPI.
+2021-05-31 18:27:09.648 -07:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2021-05-31 18:27:09.654 -07:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2021-05-31 18:27:09.658 -07:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2021-05-31 18:27:09.662 -07:00 [DBG] Using key {f35beff6-b305-4390-8487-8668ca333659} as the default key.
+2021-05-31 18:27:09.663 -07:00 [DBG] Key ring with default key {f35beff6-b305-4390-8487-8668ca333659} was loaded during application startup.
+2021-05-31 18:27:09.900 -07:00 [DBG] Loaded hosting startup assembly StoreWebUI
+2021-05-31 18:27:09.900 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-05-31 18:27:09.900 -07:00 [INF] Hosting environment: Development
+2021-05-31 18:27:09.901 -07:00 [INF] Content root path: C:\revature\P1\Malik-Sehar-P1\StoreWebUI
+2021-05-31 18:27:09.901 -07:00 [DBG] Hosting started
+2021-05-31 18:27:09.960 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/ - -
+2021-05-31 18:27:09.963 -07:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2021-05-31 18:27:09.964 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:09.967 -07:00 [DBG] The request path / does not match a supported file type
+2021-05-31 18:27:09.980 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Customer/Create.cshtml'.
+2021-05-31 18:27:09.980 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Customer/Delete.cshtml'.
+2021-05-31 18:27:09.980 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Customer/Edit.cshtml'.
+2021-05-31 18:27:09.980 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Customer/Index.cshtml'.
+2021-05-31 18:27:09.980 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Customer/SearchCustomerByPhone.cshtml'.
+2021-05-31 18:27:09.981 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Customer/SearchCustomerByPhone1.cshtml'.
+2021-05-31 18:27:09.981 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Home/Index.cshtml'.
+2021-05-31 18:27:09.982 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Home/Privacy.cshtml'.
+2021-05-31 18:27:09.982 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Inventory/Delete.cshtml'.
+2021-05-31 18:27:09.982 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Inventory/Edit.cshtml'.
+2021-05-31 18:27:09.982 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Inventory/Index.cshtml'.
+2021-05-31 18:27:09.982 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/LineItems/Index.cshtml'.
+2021-05-31 18:27:09.982 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Location/Create.cshtml'.
+2021-05-31 18:27:09.983 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Location/Index.cshtml'.
+2021-05-31 18:27:09.983 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Orders/ViewOrders.cshtml'.
+2021-05-31 18:27:09.983 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Products/Checkout.cshtml'.
+2021-05-31 18:27:09.983 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Products/Create.cshtml'.
+2021-05-31 18:27:09.983 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Products/Delete.cshtml'.
+2021-05-31 18:27:09.983 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Products/Edit.cshtml'.
+2021-05-31 18:27:09.983 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Products/Index.cshtml'.
+2021-05-31 18:27:09.983 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Products/Order.cshtml'.
+2021-05-31 18:27:09.984 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Products/ViewAllProducts.cshtml'.
+2021-05-31 18:27:09.984 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Shared/Error.cshtml'.
+2021-05-31 18:27:09.984 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Shared/_Layout.cshtml'.
+2021-05-31 18:27:09.984 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/Shared/_ValidationScriptsPartial.cshtml'.
+2021-05-31 18:27:09.984 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/_ViewImports.cshtml'.
+2021-05-31 18:27:09.984 -07:00 [DBG] Initializing Razor view compiler with compiled view: '/Views/_ViewStart.cshtml'.
+2021-05-31 18:27:10.035 -07:00 [DBG] 1 candidate(s) found for the request path '/'
+2021-05-31 18:27:10.053 -07:00 [DBG] Endpoint 'StoreWebUI.Controllers.HomeController.Index (StoreWebUI)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/'
+2021-05-31 18:27:10.056 -07:00 [DBG] Request matched endpoint 'StoreWebUI.Controllers.HomeController.Index (StoreWebUI)'
+2021-05-31 18:27:10.076 -07:00 [VRB] Performing protect operation to key {f35beff6-b305-4390-8487-8668ca333659} with purposes ('C:\revature\P1\Malik-Sehar-P1\StoreWebUI', 'SessionMiddleware').
+2021-05-31 18:27:10.083 -07:00 [INF] Executing endpoint 'StoreWebUI.Controllers.HomeController.Index (StoreWebUI)'
+2021-05-31 18:27:10.103 -07:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2021-05-31 18:27:10.181 -07:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller StoreWebUI.Controllers.HomeController (StoreWebUI).
+2021-05-31 18:27:10.183 -07:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2021-05-31 18:27:10.184 -07:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2021-05-31 18:27:10.184 -07:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2021-05-31 18:27:10.185 -07:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2021-05-31 18:27:10.185 -07:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2021-05-31 18:27:10.187 -07:00 [VRB] Resource Filter: Before executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:10.187 -07:00 [VRB] Resource Filter: After executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:10.189 -07:00 [DBG] Executing controller factory for controller StoreWebUI.Controllers.HomeController (StoreWebUI)
+2021-05-31 18:27:10.190 -07:00 [DBG] Executed controller factory for controller StoreWebUI.Controllers.HomeController (StoreWebUI)
+2021-05-31 18:27:10.190 -07:00 [VRB] Action Filter: Before executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter.
+2021-05-31 18:27:10.191 -07:00 [VRB] Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+2021-05-31 18:27:10.192 -07:00 [VRB] Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+2021-05-31 18:27:10.199 -07:00 [INF] Executing action method StoreWebUI.Controllers.HomeController.Index (StoreWebUI) - Validation state: "Valid"
+2021-05-31 18:27:10.208 -07:00 [INF] Executed action method StoreWebUI.Controllers.HomeController.Index (StoreWebUI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.0997ms.
+2021-05-31 18:27:10.209 -07:00 [VRB] Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+2021-05-31 18:27:10.209 -07:00 [VRB] Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+2021-05-31 18:27:10.210 -07:00 [VRB] Action Filter: After executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter.
+2021-05-31 18:27:10.210 -07:00 [VRB] Result Filter: Before executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:10.211 -07:00 [VRB] Result Filter: After executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:10.212 -07:00 [VRB] Before executing action result Microsoft.AspNetCore.Mvc.ViewResult.
+2021-05-31 18:27:10.216 -07:00 [DBG] View lookup cache miss for view 'Index' in controller 'Home'.
+2021-05-31 18:27:10.218 -07:00 [VRB] Located compiled view for view at path '/Views/Home/Index.cshtml'.
+2021-05-31 18:27:10.221 -07:00 [VRB] Could not find a file for view at path '/Views/Home/_ViewStart.cshtml'.
+2021-05-31 18:27:10.222 -07:00 [VRB] Located compiled view for view at path '/Views/_ViewStart.cshtml'.
+2021-05-31 18:27:10.224 -07:00 [VRB] Could not find a file for view at path '/_ViewStart.cshtml'.
+2021-05-31 18:27:10.231 -07:00 [INF] Executing ViewResult, running view Index.
+2021-05-31 18:27:10.238 -07:00 [DBG] The view path '/Views/Home/Index.cshtml' was found in 16.2542ms.
+2021-05-31 18:27:10.330 -07:00 [DBG] View lookup cache miss for view '_Layout' in controller 'Home'.
+2021-05-31 18:27:10.330 -07:00 [VRB] Could not find a file for view at path '/Views/Home/_Layout.cshtml'.
+2021-05-31 18:27:10.330 -07:00 [VRB] Located compiled view for view at path '/Views/Shared/_Layout.cshtml'.
+2021-05-31 18:27:10.382 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:10.396 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Location and 
+2021-05-31 18:27:10.406 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Location
+2021-05-31 18:27:10.410 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:10.410 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Location and 
+2021-05-31 18:27:10.410 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Location
+2021-05-31 18:27:10.411 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:10.412 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Products/ViewAllProducts and 
+2021-05-31 18:27:10.412 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Products/ViewAllProducts
+2021-05-31 18:27:10.413 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:10.413 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer and 
+2021-05-31 18:27:10.413 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer
+2021-05-31 18:27:10.414 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:10.414 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/SearchCustomerByPhone and 
+2021-05-31 18:27:10.414 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/SearchCustomerByPhone
+2021-05-31 18:27:10.416 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:10.416 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Products/Checkout and ?checkout=False
+2021-05-31 18:27:10.417 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Products/Checkout?checkout=False
+2021-05-31 18:27:10.418 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:10.418 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Home/Privacy and 
+2021-05-31 18:27:10.418 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Home/Privacy
+2021-05-31 18:27:10.459 -07:00 [INF] Executed ViewResult - view Index executed in 244.6625ms.
+2021-05-31 18:27:10.459 -07:00 [VRB] After executing action result Microsoft.AspNetCore.Mvc.ViewResult.
+2021-05-31 18:27:10.460 -07:00 [VRB] Result Filter: Before executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:10.460 -07:00 [VRB] Result Filter: After executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:10.460 -07:00 [VRB] Resource Filter: Before executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:10.460 -07:00 [VRB] Resource Filter: After executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:10.461 -07:00 [INF] Executed action StoreWebUI.Controllers.HomeController.Index (StoreWebUI) in 275.6801ms
+2021-05-31 18:27:10.462 -07:00 [INF] Executed endpoint 'StoreWebUI.Controllers.HomeController.Index (StoreWebUI)'
+2021-05-31 18:27:10.485 -07:00 [DBG] Connection ID "18230571301796315214" disconnecting.
+2021-05-31 18:27:10.506 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/ - - - 200 - text/html;+charset=utf-8 544.9969ms
+2021-05-31 18:27:10.549 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2021-05-31 18:27:10.549 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/lib/bootstrap/dist/css/bootstrap.min.css - -
+2021-05-31 18:27:10.549 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:10.549 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:10.549 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/images/menu1.png - -
+2021-05-31 18:27:10.550 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:10.557 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/images/main-bg.png - -
+2021-05-31 18:27:10.557 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:10.561 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:10.561 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:10.562 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:10.562 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:10.579 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2021-05-31 18:27:10.579 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:10.579 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:10.590 -07:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\js\site.js'
+2021-05-31 18:27:10.591 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/lib/jquery/dist/jquery.min.js - -
+2021-05-31 18:27:10.591 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:10.591 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:10.592 -07:00 [INF] Sending file. Request path: '/images/menu1.png'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\images\menu1.png'
+2021-05-31 18:27:10.593 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/css/site.css - -
+2021-05-31 18:27:10.593 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:10.594 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:10.595 -07:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\css\site.css'
+2021-05-31 18:27:10.596 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 application/javascript 47.6749ms
+2021-05-31 18:27:10.599 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/css/site.css - - - 200 2159 text/css 6.2694ms
+2021-05-31 18:27:10.601 -07:00 [DBG] Connection ID "18158513703463419995" disconnecting.
+2021-05-31 18:27:10.603 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/images/menu1.png - - - 200 12176 image/png 53.3563ms
+2021-05-31 18:27:10.642 -07:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2021-05-31 18:27:10.649 -07:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\lib\jquery\dist\jquery.min.js'
+2021-05-31 18:27:10.649 -07:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2021-05-31 18:27:10.653 -07:00 [DBG] Connection ID "18230571301796315216" disconnecting.
+2021-05-31 18:27:10.653 -07:00 [DBG] Connection ID "17942340921349636184" disconnecting.
+2021-05-31 18:27:10.675 -07:00 [DBG] Connection ID "17870283327311708234" disconnecting.
+2021-05-31 18:27:10.676 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78641 application/javascript 98.0858ms
+2021-05-31 18:27:10.676 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/lib/jquery/dist/jquery.min.js - - - 200 89478 application/javascript 85.0231ms
+2021-05-31 18:27:10.681 -07:00 [INF] Sending file. Request path: '/images/main-bg.png'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\images\main-bg.png'
+2021-05-31 18:27:10.681 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 155764 text/css 132.5860ms
+2021-05-31 18:27:10.722 -07:00 [DBG] Connection ID "18374686485577203845" disconnecting.
+2021-05-31 18:27:10.725 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/images/main-bg.png - - - 200 582452 image/png 167.6218ms
+2021-05-31 18:27:13.562 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/Customer - -
+2021-05-31 18:27:13.562 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:13.563 -07:00 [DBG] The request path /Customer does not match a supported file type
+2021-05-31 18:27:13.576 -07:00 [DBG] 1 candidate(s) found for the request path '/Customer'
+2021-05-31 18:27:13.576 -07:00 [DBG] Endpoint 'StoreWebUI.Controllers.CustomerController.Index (StoreWebUI)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/Customer'
+2021-05-31 18:27:13.576 -07:00 [DBG] Request matched endpoint 'StoreWebUI.Controllers.CustomerController.Index (StoreWebUI)'
+2021-05-31 18:27:13.578 -07:00 [VRB] Performing protect operation to key {f35beff6-b305-4390-8487-8668ca333659} with purposes ('C:\revature\P1\Malik-Sehar-P1\StoreWebUI', 'SessionMiddleware').
+2021-05-31 18:27:13.578 -07:00 [INF] Executing endpoint 'StoreWebUI.Controllers.CustomerController.Index (StoreWebUI)'
+2021-05-31 18:27:13.585 -07:00 [INF] Route matched with {action = "Index", controller = "Customer"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller StoreWebUI.Controllers.CustomerController (StoreWebUI).
+2021-05-31 18:27:13.586 -07:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2021-05-31 18:27:13.586 -07:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2021-05-31 18:27:13.588 -07:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2021-05-31 18:27:13.589 -07:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2021-05-31 18:27:13.589 -07:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2021-05-31 18:27:13.590 -07:00 [VRB] Resource Filter: Before executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:13.590 -07:00 [VRB] Resource Filter: After executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:13.590 -07:00 [DBG] Executing controller factory for controller StoreWebUI.Controllers.CustomerController (StoreWebUI)
+2021-05-31 18:27:13.836 -07:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2021-05-31 18:27:13.901 -07:00 [DBG] Executed controller factory for controller StoreWebUI.Controllers.CustomerController (StoreWebUI)
+2021-05-31 18:27:13.901 -07:00 [VRB] Action Filter: Before executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter.
+2021-05-31 18:27:13.901 -07:00 [VRB] Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+2021-05-31 18:27:13.902 -07:00 [VRB] Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+2021-05-31 18:27:13.902 -07:00 [INF] Executing action method StoreWebUI.Controllers.CustomerController.Index (StoreWebUI) - Validation state: "Valid"
+2021-05-31 18:27:13.903 -07:00 [INF] Customer View List Rendered
+2021-05-31 18:27:14.943 -07:00 [DBG] The property 'ProductsBarcode.MInventory' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.943 -07:00 [DBG] The property 'StoreFrontId.MInventory' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.943 -07:00 [DBG] The property 'customerId.MLineItems' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.944 -07:00 [DBG] The property 'locationsId.MLineItems' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.944 -07:00 [DBG] The property 'ordersId.MLineItems' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.944 -07:00 [DBG] The property 'productBarcode.MLineItems' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.944 -07:00 [DBG] The property 'MInventoryId.MLocation' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.944 -07:00 [DBG] The property 'MProductBarcode.MLocation' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.944 -07:00 [DBG] The property 'customerId.MOrders' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.945 -07:00 [DBG] The property 'storeFrontsId.MOrders' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.945 -07:00 [DBG] The property 'MInventoryId.MProduct' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:14.945 -07:00 [DBG] The property 'MLineItemsId.MProduct' was created in shadow state because there are no eligible CLR members with a matching name.
+2021-05-31 18:27:15.127 -07:00 [INF] Entity Framework Core 5.0.6 initialized 'ChocolatefactoryContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-05-31 18:27:15.176 -07:00 [DBG] Compiling query expression: 
+'DbSet<MCustomer>()
+    .Select(customer => new MCustomer(
+        customer.Id, 
+        customer.Name, 
+        customer.PhoneNo, 
+        customer.Address, 
+        customer.Password
+    ))'
+2021-05-31 18:27:15.410 -07:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<MCustomer>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+        SELECT c.Id, c.Name, c.PhoneNo, c.Address, c.Password
+        FROM Customers AS c), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, MCustomer>, 
+    SDL.ChocolatefactoryContext, 
+    False, 
+    False
+)'
+2021-05-31 18:27:15.445 -07:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2021-05-31 18:27:15.479 -07:00 [DBG] Created DbCommand for 'ExecuteReader' (29ms).
+2021-05-31 18:27:15.483 -07:00 [DBG] Opening connection to database 'ljsmvzvg' on server 'tcp://kashin.db.elephantsql.com:5432'.
+2021-05-31 18:27:16.416 -07:00 [DBG] Opened connection to database 'ljsmvzvg' on server 'tcp://kashin.db.elephantsql.com:5432'.
+2021-05-31 18:27:16.447 -07:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."Name", c."PhoneNo", c."Address", c."Password"
+FROM "Customers" AS c
+2021-05-31 18:27:16.490 -07:00 [INF] Executed DbCommand (63ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."Name", c."PhoneNo", c."Address", c."Password"
+FROM "Customers" AS c
+2021-05-31 18:27:16.496 -07:00 [DBG] A data reader was disposed.
+2021-05-31 18:27:16.499 -07:00 [DBG] Closing connection to database 'ljsmvzvg' on server 'tcp://kashin.db.elephantsql.com:5432'.
+2021-05-31 18:27:16.504 -07:00 [DBG] Closed connection to database 'ljsmvzvg' on server 'tcp://kashin.db.elephantsql.com:5432'.
+2021-05-31 18:27:16.507 -07:00 [INF] Executed action method StoreWebUI.Controllers.CustomerController.Index (StoreWebUI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2604.9548ms.
+2021-05-31 18:27:16.508 -07:00 [VRB] Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+2021-05-31 18:27:16.508 -07:00 [VRB] Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+2021-05-31 18:27:16.508 -07:00 [VRB] Action Filter: After executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter.
+2021-05-31 18:27:16.508 -07:00 [VRB] Result Filter: Before executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:16.508 -07:00 [VRB] Result Filter: After executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:16.508 -07:00 [VRB] Before executing action result Microsoft.AspNetCore.Mvc.ViewResult.
+2021-05-31 18:27:16.509 -07:00 [DBG] View lookup cache miss for view 'Index' in controller 'Customer'.
+2021-05-31 18:27:16.509 -07:00 [VRB] Located compiled view for view at path '/Views/Customer/Index.cshtml'.
+2021-05-31 18:27:16.510 -07:00 [VRB] Could not find a file for view at path '/Views/Customer/_ViewStart.cshtml'.
+2021-05-31 18:27:16.510 -07:00 [VRB] Located compiled view for view at path '/Views/_ViewStart.cshtml'.
+2021-05-31 18:27:16.510 -07:00 [VRB] Could not find a file for view at path '/_ViewStart.cshtml'.
+2021-05-31 18:27:16.511 -07:00 [INF] Executing ViewResult, running view Index.
+2021-05-31 18:27:16.511 -07:00 [DBG] The view path '/Views/Customer/Index.cshtml' was found in 2.6609ms.
+2021-05-31 18:27:16.519 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.519 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/Create and 
+2021-05-31 18:27:16.519 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/Create
+2021-05-31 18:27:16.532 -07:00 [DBG] View lookup cache miss for view 'DisplayTemplates/Int32' in controller 'Customer'.
+2021-05-31 18:27:16.532 -07:00 [VRB] Could not find a file for view at path '/Views/Customer/DisplayTemplates/Int32.cshtml'.
+2021-05-31 18:27:16.532 -07:00 [VRB] Could not find a file for view at path '/Views/Shared/DisplayTemplates/Int32.cshtml'.
+2021-05-31 18:27:16.532 -07:00 [VRB] Could not find a file for view at path '/Pages/Shared/DisplayTemplates/Int32.cshtml'.
+2021-05-31 18:27:16.533 -07:00 [DBG] View lookup cache miss for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.533 -07:00 [VRB] Could not find a file for view at path '/Views/Customer/DisplayTemplates/String.cshtml'.
+2021-05-31 18:27:16.533 -07:00 [VRB] Could not find a file for view at path '/Views/Shared/DisplayTemplates/String.cshtml'.
+2021-05-31 18:27:16.533 -07:00 [VRB] Could not find a file for view at path '/Pages/Shared/DisplayTemplates/String.cshtml'.
+2021-05-31 18:27:16.536 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.539 -07:00 [DBG] View lookup cache miss for view 'DisplayTemplates/PhoneNumber' in controller 'Customer'.
+2021-05-31 18:27:16.539 -07:00 [VRB] Could not find a file for view at path '/Views/Customer/DisplayTemplates/PhoneNumber.cshtml'.
+2021-05-31 18:27:16.539 -07:00 [VRB] Could not find a file for view at path '/Views/Shared/DisplayTemplates/PhoneNumber.cshtml'.
+2021-05-31 18:27:16.539 -07:00 [VRB] Could not find a file for view at path '/Pages/Shared/DisplayTemplates/PhoneNumber.cshtml'.
+2021-05-31 18:27:16.539 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.541 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.543 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.544 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/Edit/4 and 
+2021-05-31 18:27:16.544 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/Edit/4
+2021-05-31 18:27:16.544 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.544 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/Delete/4 and 
+2021-05-31 18:27:16.544 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/Delete/4
+2021-05-31 18:27:16.545 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/Int32' in controller 'Customer'.
+2021-05-31 18:27:16.545 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.546 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.547 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/PhoneNumber' in controller 'Customer'.
+2021-05-31 18:27:16.547 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.548 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.548 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.548 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/Edit/1 and 
+2021-05-31 18:27:16.549 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/Edit/1
+2021-05-31 18:27:16.549 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.549 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/Delete/1 and 
+2021-05-31 18:27:16.549 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/Delete/1
+2021-05-31 18:27:16.550 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/Int32' in controller 'Customer'.
+2021-05-31 18:27:16.550 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.550 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.551 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/PhoneNumber' in controller 'Customer'.
+2021-05-31 18:27:16.551 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.552 -07:00 [DBG] View lookup cache hit for view 'DisplayTemplates/String' in controller 'Customer'.
+2021-05-31 18:27:16.553 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.553 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/Edit/2 and 
+2021-05-31 18:27:16.553 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/Edit/2
+2021-05-31 18:27:16.554 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.554 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/Delete/2 and 
+2021-05-31 18:27:16.555 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/Delete/2
+2021-05-31 18:27:16.555 -07:00 [DBG] View lookup cache miss for view '_Layout' in controller 'Customer'.
+2021-05-31 18:27:16.555 -07:00 [VRB] Could not find a file for view at path '/Views/Customer/_Layout.cshtml'.
+2021-05-31 18:27:16.556 -07:00 [VRB] Located compiled view for view at path '/Views/Shared/_Layout.cshtml'.
+2021-05-31 18:27:16.559 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.560 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Location and 
+2021-05-31 18:27:16.560 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Location
+2021-05-31 18:27:16.560 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.560 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Location and 
+2021-05-31 18:27:16.560 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Location
+2021-05-31 18:27:16.561 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.561 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Products/ViewAllProducts and 
+2021-05-31 18:27:16.561 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Products/ViewAllProducts
+2021-05-31 18:27:16.561 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.562 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer and 
+2021-05-31 18:27:16.562 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer
+2021-05-31 18:27:16.562 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.563 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Customer/SearchCustomerByPhone and 
+2021-05-31 18:27:16.563 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Customer/SearchCustomerByPhone
+2021-05-31 18:27:16.563 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.563 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Products/Checkout and ?checkout=False
+2021-05-31 18:27:16.564 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Products/Checkout?checkout=False
+2021-05-31 18:27:16.564 -07:00 [DBG] Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2021-05-31 18:27:16.564 -07:00 [DBG] Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Home/Privacy and 
+2021-05-31 18:27:16.564 -07:00 [DBG] Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /Home/Privacy
+2021-05-31 18:27:16.573 -07:00 [INF] Executed ViewResult - view Index executed in 64.8858ms.
+2021-05-31 18:27:16.574 -07:00 [VRB] After executing action result Microsoft.AspNetCore.Mvc.ViewResult.
+2021-05-31 18:27:16.574 -07:00 [VRB] Result Filter: Before executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:16.574 -07:00 [VRB] Result Filter: After executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:16.574 -07:00 [VRB] Resource Filter: Before executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:16.575 -07:00 [VRB] Resource Filter: After executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+2021-05-31 18:27:16.575 -07:00 [INF] Executed action StoreWebUI.Controllers.CustomerController.Index (StoreWebUI) in 2985.1752ms
+2021-05-31 18:27:16.575 -07:00 [INF] Executed endpoint 'StoreWebUI.Controllers.CustomerController.Index (StoreWebUI)'
+2021-05-31 18:27:16.584 -07:00 [DBG] Connection ID "18374686485577203847" disconnecting.
+2021-05-31 18:27:16.595 -07:00 [DBG] 'ChocolatefactoryContext' disposed.
+2021-05-31 18:27:16.624 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/Customer - - - 200 - text/html;+charset=utf-8 3063.0047ms
+2021-05-31 18:27:16.633 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/lib/bootstrap/dist/css/bootstrap.min.css - -
+2021-05-31 18:27:16.634 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:16.634 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:16.634 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/css/site.css - -
+2021-05-31 18:27:16.634 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:16.635 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:16.640 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/lib/jquery/dist/jquery.min.js - -
+2021-05-31 18:27:16.640 -07:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\css\site.css'
+2021-05-31 18:27:16.640 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2021-05-31 18:27:16.641 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:16.641 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2021-05-31 18:27:16.642 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:16.642 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:16.642 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:16.645 -07:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\js\site.js'
+2021-05-31 18:27:16.646 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44350/images/menu1.png - -
+2021-05-31 18:27:16.647 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:16.647 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:16.647 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/css/site.css - - - 200 2159 text/css 12.5226ms
+2021-05-31 18:27:16.647 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 application/javascript 6.1532ms
+2021-05-31 18:27:16.649 -07:00 [INF] Sending file. Request path: '/images/menu1.png'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\images\menu1.png'
+2021-05-31 18:27:16.657 -07:00 [VRB] All hosts are allowed.
+2021-05-31 18:27:16.657 -07:00 [VRB] Range header's value is empty.
+2021-05-31 18:27:16.664 -07:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2021-05-31 18:27:16.665 -07:00 [DBG] Connection ID "17942340921349636186" disconnecting.
+2021-05-31 18:27:16.679 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/images/menu1.png - - - 200 12176 image/png 32.2535ms
+2021-05-31 18:27:16.679 -07:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2021-05-31 18:27:16.681 -07:00 [DBG] Connection ID "17798225728978812952" disconnecting.
+2021-05-31 18:27:16.684 -07:00 [DBG] Connection ID "18230571293206380613" disconnecting.
+2021-05-31 18:27:16.685 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78641 application/javascript 44.9299ms
+2021-05-31 18:27:16.688 -07:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\revature\P1\Malik-Sehar-P1\StoreWebUI\wwwroot\lib\jquery\dist\jquery.min.js'
+2021-05-31 18:27:16.696 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 155764 text/css 62.9097ms
+2021-05-31 18:27:16.698 -07:00 [DBG] Connection ID "17870283327311708236" disconnecting.
+2021-05-31 18:27:16.701 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44350/lib/jquery/dist/jquery.min.js - - - 200 89478 application/javascript 61.5049ms
