@@ -108,6 +108,37 @@ namespace SDL
                             locat.Address)
                 ).ToList();
         }
+        public List<MOrders> GetOrderByCustomerId(int id)
+        {
+            List<MOrders> mOrders = _context.Orders.Select(
+                order => new MOrders()
+                {
+                    Id = order.Id,
+                    CustID = order.CustID,
+                    LocationID = order.LocationID,
+                    date = order.date,
+                    storeFronts = order.storeFronts,
+                    customer = order.customer,
+                    lineItems = _context.LineItems.Select(
+                        orderitem => new MLineItems()
+                        {
+                            OrderID = orderitem.OrderID,
+                            ProId = orderitem.ProId,
+                            Quantity = orderitem.Quantity,
+                            product = _context.Products.Select(pro => new MProduct
+                            {
+                                Barcode = pro.Barcode,
+                                Name = pro.Name,
+                                Price = pro.Price,
+                            }).Where(p => p.Barcode == orderitem.ProId).FirstOrDefault(),
+                            orders = orderitem.orders
+                        }).Where(o => o.OrderID == order.Id).ToList(),
+                    Total = order.Total
+
+                }
+            ).Where(order => order.CustID == id).ToList();
+            return mOrders;
+        }
         public List<MOrders> GetOrderByLocationId(int id)
         {
             List<MOrders> mOrders = _context.Orders.Select(

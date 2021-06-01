@@ -8,5 +8,6 @@ namespace SBL
         public void ItemToAddInOrders(MOrders orders);
         public List<MOrders> GetOrdersWithAllLocations();
         List<MOrders> GetOrderByLocationId(int id);
+        List<MOrders> GetOrderByCustomerId(int id);
     }
 }

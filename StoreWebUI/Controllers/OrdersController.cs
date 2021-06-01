@@ -31,6 +31,23 @@ namespace StoreWebUI.Controllers
             Console.WriteLine(orderList.ToString());
             return View();
         }
+        
+        public ActionResult ViewOrdersByCustID(int id)
+        {
+            List<MOrders> orderList = _lineItems.GetOrderByCustomerId(id);
+            if (orderList.Count > 0)
+            {
+                foreach (MOrders order in orderList)
+                {
+                    if (order.lineItems != null)
+                    {
+                        ViewBag.Order = order;
+                        return View(order.lineItems.Select(order => new LineItemVM(order)).ToList());
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Location");
+        }
         public ActionResult ViewOrders(int id)
         {
             List<MOrders> orderList = _lineItems.GetOrderByLocationId(id);

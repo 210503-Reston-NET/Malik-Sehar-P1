@@ -1,0 +1,49 @@
+﻿@model IEnumerable<StoreWebUI.Models.LineItemVM>
+
+@{
+    ViewData["Title"] = "View Orders";
+}
+
+<h1>Orders History</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Product Price
+            </th>
+            <th>
+                Date
+            </th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @ViewBag.order.Id
+                </td>
+                <td>
+                    @item.products.Name
+                </td>
+                <td>
+                    @item.products.Price
+                </td>
+                <td>
+                    @ViewBag.order.date
+                </td>
+                <td>@item.Quantity</td>
+                <td>@ViewBag.order.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
