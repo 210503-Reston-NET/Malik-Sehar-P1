@@ -28,14 +28,14 @@
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-pink" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" asp-route-id="@Model.StoreId">Back to List</a>
+    <a asp-action="Index" asp-route-id="@Model.StoreId" class="btn btn-brown">Back to List</a>
 </div>
 
 @section Scripts {

@@ -34,9 +34,9 @@ namespace SDL
         //All Methods to Get Orders List
         List<MOrders> GetOrdersWithAllLocations();
         List<MLineItems> GetAllOrders(int searchedOrdersInStore);
-        List<MOrders> GetOrderByLocationId(int id);
+        List<MOrders> GetOrderByLocationId(int id, string date);
         public void ItemToAddInOrders(MOrders orders);
-        List<MOrders> GetOrderByCustomerId(int id);
+        List<MOrders> GetOrderByCustomerId(int id, string date);
 
 
     }

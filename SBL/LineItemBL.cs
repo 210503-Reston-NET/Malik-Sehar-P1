@@ -17,14 +17,14 @@ namespace SBL
             return _repo.GetAllOrders(searchedOrdersInStore);
         }
 
-        public List<MOrders> GetOrderByCustomerId(int id)
+        public List<MOrders> GetOrderByCustomerId(int id, string date)
         {
-            return _repo.GetOrderByCustomerId(id);
+            return _repo.GetOrderByCustomerId(id,date);
         }
 
-        public List<MOrders> GetOrderByLocationId(int id)
+        public List<MOrders> GetOrderByLocationId(int id, string date)
         {
-            return _repo.GetOrderByLocationId(id);
+            return _repo.GetOrderByLocationId(id,date);
         }
 
         public List<MOrders> GetOrdersWithAllLocations()

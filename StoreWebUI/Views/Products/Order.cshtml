@@ -6,9 +6,6 @@
 
 <h1>Order</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -34,13 +31,13 @@
                 @item.product.Name
             </td>
             <td>
-                @item.product.Price
+                $@item.product.Price
             </td>
             <td>
                 @item.Quantity
             </td>
             <td>
-                @ViewBag.CreatedOrder.Total
+               $@ViewBag.CreatedOrder.Total
             </td>
         </tr>
 }

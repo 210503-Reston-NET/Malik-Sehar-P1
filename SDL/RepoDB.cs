@@ -108,7 +108,7 @@ namespace SDL
                             locat.Address)
                 ).ToList();
         }
-        public List<MOrders> GetOrderByCustomerId(int id)
+        public List<MOrders> GetOrderByCustomerId(int id, string dategiven)
         {
             List<MOrders> mOrders = _context.Orders.Select(
                 order => new MOrders()
@@ -136,10 +136,10 @@ namespace SDL
                     Total = order.Total
 
                 }
-            ).Where(order => order.CustID == id).ToList();
+            ).OrderBy(item => item.date).Where(order => order.CustID == id).ToList();
             return mOrders;
         }
-        public List<MOrders> GetOrderByLocationId(int id)
+        public List<MOrders> GetOrderByLocationId(int id, string date)
         {
             List<MOrders> mOrders = _context.Orders.Select(
                 order => new MOrders()
@@ -165,9 +165,17 @@ namespace SDL
                             orders = orderitem.orders
                         }).Where(o => o.OrderID == order.Id).ToList(),
                     Total = order.Total
-
                 }
             ).Where(order => order.LocationID == id).ToList();
+            switch (date)
+            {
+                case "date":
+                    mOrders.OrderBy(x => x.date);
+                    break;
+                default:
+                    mOrders.OrderByDescending(x => x.date);
+                    break;
+            }
             return mOrders;
         }
         public List<MLineItems> GetAllOrders(int searchedListItemsByOrderId)

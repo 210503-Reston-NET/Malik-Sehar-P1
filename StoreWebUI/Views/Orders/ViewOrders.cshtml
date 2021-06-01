@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StoreWebUI.Models.LineItemVM>
+﻿@model IEnumerable<StoreWebUI.Models.OrdersVM>
 
 @{
     ViewData["Title"] = "View Orders";
@@ -13,35 +13,25 @@
                 ID
             </th>
             <th>
-                Product Name
+                <a asp-action="ViewOrders" asp-route-id="1" asp-route-date="@ViewData["dateSorting"]" class="text-dark" style="text-decoration:none;">
+                    Date
+                </a>
             </th>
-            <th>
-                Product Price
-            </th>
-            <th>
-                Date
-            </th>
-            <th>Quantity</th>
             <th>Total</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @ViewBag.order.Id
+                @item.Id
             </td>
             <td>
-                @item.products.Name
+                @item.date
             </td>
-            <td>
-                @item.products.Price
-            </td>
-            <td>
-                @ViewBag.order.date
-            </td>
-            <td>@item.Quantity</td>
-            <td>@ViewBag.order.Total</td>
+            <td>$@item.Total</td>
+            <td>@Html.ActionLink("Order Details", "OrderDetails", new { id = item.Id }, new { @class = "btn btn-brown" })</td>
         </tr>
 }
     </tbody>

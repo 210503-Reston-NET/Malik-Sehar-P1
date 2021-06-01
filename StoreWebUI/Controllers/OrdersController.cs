@@ -31,39 +31,48 @@ namespace StoreWebUI.Controllers
             Console.WriteLine(orderList.ToString());
             return View();
         }
-        
-        public ActionResult ViewOrdersByCustID(int id)
+        public ActionResult OrderDetails(int id)
         {
-            List<MOrders> orderList = _lineItems.GetOrderByCustomerId(id);
+            return View(_lineItems.GetAllOrders(id).Select(li => new LineItemVM(li)).ToList());
+        }
+        public ActionResult ViewOrdersByCustID(int id, string date)
+        {
+            ViewData["dateSorting"] = string.IsNullOrEmpty(date) ? "date" : "";
+            List<MOrders> orderList = _lineItems.GetOrderByCustomerId(id, date);
             if (orderList.Count > 0)
             {
-                foreach (MOrders order in orderList)
+                if (date == "date")
                 {
-                    if (order.lineItems != null)
-                    {
-                        ViewBag.Order = order;
-                        return View(order.lineItems.Select(order => new LineItemVM(order)).ToList());
-                    }
+                    return View(orderList.Select(order => new OrdersVM(order)).OrderBy(sort => sort.date).Take(10).ToList());
+
+                }
+                else
+                {
+                    return View(orderList.Select(order => new OrdersVM(order)).ToList());
                 }
             }
-            return RedirectToAction("Index", "Location");
+            return RedirectToAction("Index", "Home");
         }
-        public ActionResult ViewOrders(int id)
+        public ActionResult ViewOrders(int id, string date)
         {
-            List<MOrders> orderList = _lineItems.GetOrderByLocationId(id);
-            if(orderList.Count > 0)
+            ViewData["dateSorting"] = string.IsNullOrEmpty(date) ? "date" : "";
+            List<MOrders> orderList = _lineItems.GetOrderByLocationId(id,date);
+            if (orderList.Count > 0)
             {
-                foreach (MOrders order in orderList)
+                if (date == "Date")
                 {
-                    if (order.lineItems != null)
-                    {
-                       ViewBag.Order = order;
-                       return View(order.lineItems.Select(order => new LineItemVM(order)).ToList());
-                    }
+                    return View(orderList.Select(order => new OrdersVM(order)).OrderBy(sort => sort.date).Take(5).ToList());
+                    
                 }
+                else
+                {
+                    return View(orderList.Select(order => new OrdersVM(order)).ToList());
+                }
+                
             }
-            return RedirectToAction("Index", "Location");
+            return RedirectToAction("Index", "Home");
         }
+       
         public ActionResult ViewOrdersByCustomerId(int id)
         {
             return View();
