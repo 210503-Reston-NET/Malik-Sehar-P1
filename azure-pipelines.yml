@@ -30,3 +30,17 @@ steps:
   inputs:
         command: 'test'
         projects: '**/Malik-Sehar-P1/STests/STests.csproj'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    zipAfterPublish: true
+    projects: '**/Malik-Sehar-P1/StoreWebUI/StoreWebUI.csproj'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(ccb0da5f-2451-45f6-ba61-fbd182a5cb61)'
+    appType: 'webApp'
+    WebAppName: 'ChocoFactory'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
