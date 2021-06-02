@@ -8,8 +8,25 @@ trigger:
 
 pool:
   default
-
+variables:
+  solution: '**/Malik-Sehar-P1/StoreApp.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: 'restore'
+    projects: '$(solution)'
+    feedsToUse: 'select'
 
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: 'build'
+    projects: '$(solution)'
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+        command: 'test'
+        projects: '**/Malik-Sehar-P1/STests.csproj'
