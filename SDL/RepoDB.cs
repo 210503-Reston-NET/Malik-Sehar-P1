@@ -314,13 +314,13 @@ namespace SDL
             
             foreach (MLineItems order in orders.lineItems)
             {
-              if(GetProductExitInInventory(order.ProId) != null){
+              if(GetProductExitInInventory(order.locations.Id,order.ProId) != null){
                     UpdateInventory(new MInventory
                     {
-                        Id = GetInventoryById(GetProductExitInInventory(order.ProId).Id).Id,
+                        Id = GetInventoryById(GetProductExitInInventory(order.locations.Id,order.ProId).Id).Id,
                         StoreId = orders.LocationID,
                         ProductId = order.ProId,
-                        Quantity = GetInventoryById(GetProductExitInInventory(order.ProId).Id).Quantity - order.Quantity
+                        Quantity = GetInventoryById(GetProductExitInInventory(order.locations.Id,order.ProId).Id).Quantity - order.Quantity
                     });
               }
             }
@@ -358,9 +358,9 @@ namespace SDL
             if (found == null) return null;
             return new MInventory(found.Id, found.StoreId, found.ProductId, found.Quantity);
         }
-        public MInventory GetProductExitInInventory(string Barcode)
+        public MInventory GetProductExitInInventory(int id, string Barcode)
         {
-            MInventory AlreadyExits =  _context.Inventories.FirstOrDefault(invPro => invPro.ProductId == Barcode);
+            MInventory AlreadyExits =  _context.Inventories.FirstOrDefault(invPro => invPro.ProductId == Barcode && invPro.StoreId == id);
             if (AlreadyExits == null) return null;
             return new MInventory(AlreadyExits.Id, AlreadyExits.StoreId, AlreadyExits.ProductId, AlreadyExits.Quantity);
         }

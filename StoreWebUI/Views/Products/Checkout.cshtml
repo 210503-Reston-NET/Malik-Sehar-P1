@@ -49,7 +49,7 @@ else
                 <td><a asp-controller="Products" asp-action="remove" asp-route-id="@item.product.Barcode" class="btn btn-yellow">Remove</a></td>
             </tr>
             }
-            <tr><td colspan="5"><p><h3 class="text-left">Grand Total</h3><span class="text-right">$@ViewBag.Total</span></p></td></tr>
+            <tr><td colspan="5"><h3 class="text-left">Grand Total</h3><p class="text-right">$@ViewBag.Total</p></td></tr>
         </tbody>
     </table>
     <div><a href='@Url.Action("Checkout", new { checkout = true })' class="btn btn-brown pull-right">Checkout</a></div>

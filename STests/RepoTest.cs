@@ -15,20 +15,36 @@ namespace STests
         //Xunit creates new instances of classes, you need to make sure that you seed your DB
         //for each class
         public RepoTest(){
-            options = new DbContextOptionsBuilder<ChocolatefactoryContext>().UseSqlite("Filename=Test.db").Options;
+            options = new DbContextOptionsBuilder<ChocolatefactoryContext>().UseSqlServer("Filename=Test.db").Options;
             seed();
         }
+      /*  [Fact]
+        public void GetAllCustomersShouldReturnAllCustomers()
+        {
+            using (var context = new ChocolatefactoryContext(options))
+            {
+                //Arrange the test context
+                IRepository _repo = new RepoDB(context);
+
+                //Act
+                var customers = _repo.GetAllCustomers();
+                //Assert
+                Assert.Equal(3, customers.Count);
+            }
+        }
         [Fact]
-        public void GetAllCustomerShouldReturnAllCustomer(){
+        public void AddCustomerShouldAddCustomer(){
             using(var context = new ChocolatefactoryContext(options)){
                 //Arrange
                 IRepository _repo = new RepoDB(context);
                 //Act
-                var customers = _repo.GetAllCustomers();
-                //Assert
-                Assert.Equal(2, customers.Count);
+                _repo.AddCustomer
+                (
+                    new MCustomer("Test User", "456789")
+                );
             }
-        }
+            
+        }*/
         private void seed(){
             //this is an example of a using block
             using(var context = new ChocolatefactoryContext(options)){
@@ -39,13 +55,15 @@ namespace STests
                         Id = 1,
                         Name = "Sehar",
                         PhoneNo = "345678",
-                        Address = "Reno"
+                        Address = "Reno nv",
+                        Password="5yfuxga87"
                     },
                     new MCustomer{
                         Id = 2,
                         Name = "Mehak",
                         PhoneNo = "456789",
-                        Address = "Fernley"
+                        Address = "Fernley nv",
+                        Password="fjhsut29u",
                     }
                 );
                 context.SaveChanges();

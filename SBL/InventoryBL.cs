@@ -35,9 +35,9 @@ namespace SBL
             return _repo.DeleteInventory(mInventory);
         }
 
-        public MInventory GetProductExitInInventory(string Barcode)
+        public MInventory GetProductExitInInventory(int id, string Barcode)
         {
-            return _repo.GetProductExitInInventory(Barcode);
+            return _repo.GetProductExitInInventory(id, Barcode);
         }
     }
 }

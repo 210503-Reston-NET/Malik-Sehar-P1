@@ -100,7 +100,7 @@ namespace StoreWebUI.Controllers
             int index = isExist(id);
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
-            return RedirectToAction("Index", "Location");
+            return RedirectToAction("Checkout", new { checkout= false });
         }
         public ActionResult Checkout(bool checkout)
         {
@@ -142,7 +142,7 @@ namespace StoreWebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if(_inventory.GetProductExitInInventory(productVM.Barcode) == null)
+                    if(_inventory.GetProductExitInInventory(id, productVM.Barcode) == null)
                     {
                         _inventory.AddProductInInventory(new MInventory
                         {
@@ -200,9 +200,9 @@ namespace StoreWebUI.Controllers
             return View(_IproductBL.GetAllProducts().Select(product => new ProductVM(product)).ToList());
         }
         // GET: ProductsController/Delete/5
-        public ActionResult Delete(string barcode)
+        public ActionResult Delete(string id)
         {
-            return View(new ProductVM(_IproductBL.GetProductById(barcode)));
+            return View(new ProductVM(_IproductBL.GetProductById(id)));
         }
 
         // POST: ProductsController/Delete/5
@@ -212,12 +212,8 @@ namespace StoreWebUI.Controllers
         {
             try
             {
-                if (_inventory.GetProductExitInInventory(id) == null)
-                {
-                       _IproductBL.DeleteAProduct(_IproductBL.GetProductById(id));
-                        return RedirectToAction(nameof(ViewAllProducts));
-                }
-                return View();
+                _IproductBL.DeleteAProduct(_IproductBL.GetProductById(id));
+                return RedirectToAction(nameof(ViewAllProducts));
             }
             catch
             {

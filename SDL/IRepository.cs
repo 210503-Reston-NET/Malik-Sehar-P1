@@ -22,7 +22,7 @@ namespace SDL
         MProduct UpdateProduct(MProduct product);
         MProduct AddProduct(MProduct product);
         MProduct searchAProduct(string barcode);
-        MInventory GetProductExitInInventory(string Barcode);
+        MInventory GetProductExitInInventory(int id, string Barcode);
         MProduct GetProductById(string Barcode);
         MProduct DeleteAProduct(MProduct mProduct);
         //All Customer Operations
