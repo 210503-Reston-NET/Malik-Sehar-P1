@@ -9,7 +9,7 @@ trigger:
 pool:
   default
 variables:
-  solution: '**/Malik-Sehar-P1/StoreApp.sln'
+  solution: '**/Malik-Sehar-P1/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 steps:
