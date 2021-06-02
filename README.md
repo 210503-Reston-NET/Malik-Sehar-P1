@@ -1,6 +1,5 @@
 # Malik-Sehar-P1
 # Store App 2.0
-# Into the Web
 # Overview:
 The store app is a software that helps customers purchase products from my business. Designed with functionality that would make virtual shopping much simpler!
 
