@@ -4,7 +4,7 @@
     ViewData["Title"] = "Products";
 }
 <h3>Products</h3>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                $@Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { barcode = item.Barcode }, new { @class = "btn btn-pink" })
