@@ -29,13 +29,13 @@ steps:
   displayName: Test
   inputs:
         command: 'test'
-        projects: '**/Malik-Sehar-P1/STests/STests.csproj'
+        projects: '**/STests/STests.csproj'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
     zipAfterPublish: true
-    projects: '**/Malik-Sehar-P1/StoreWebUI/StoreWebUI.csproj'
+    projects: '**/StoreWebUI/StoreWebUI.csproj'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
