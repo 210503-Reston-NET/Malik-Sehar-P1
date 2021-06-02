@@ -36,5 +36,6 @@ To install this application simply clone this repository to your local; However 
 
 # Usage
 This application is useful mostly for new developer that want to see a basic C# Dotnet application run. If you are interested I would suggest trying to get the application working in your local environment and then trying to create your own store.
-Contributors
+# Contributors
 Sehar Malik
+
