@@ -9,11 +9,6 @@ trigger:
 pool:
   default
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-=======
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
