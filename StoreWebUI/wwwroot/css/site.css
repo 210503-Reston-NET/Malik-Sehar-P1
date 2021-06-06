@@ -11,7 +11,42 @@ a.navbar-brand {
 a {
   color: #0366d6;
 }
+.main-bg {
+    background: url(../images/main-bg.png) no-repeat;
+    background-position: center bottom;
+    opacity: 0.8;
+    background-size: cover;
+}
+.btn-pink {
+    background-color: #f07a9d;
+    color: #fff;
+    border-color: #d46484;
+}
+.btn-brown {
+    background-color: #843b32;
+    color: #fff;
+    border-color: #4d0505;
+}
+.btn-brown:hover {
+    background-color: #fff;
+    color: #4d0505;
+    border-color: #4d0505;
+}
+.btn-yellow {
+    background-color: #f7c181;
+    color: #000;
+    border-color: #ce9066;
+}
 
+    .btn-yellow:hover {
+        background-color: #fff;
+        border-color: #ce9066;
+    }
+.btn-pink:hover {
+    background-color: #fff;
+    color: #ba536a;
+    border-color: #ba536a;
+}
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

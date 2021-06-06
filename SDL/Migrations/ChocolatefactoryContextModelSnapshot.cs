@@ -19,21 +19,6 @@ namespace SDL.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("MLineItemsMOrders", b =>
-                {
-                    b.Property<int>("lineItemsId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ordersId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("lineItemsId", "ordersId");
-
-                    b.HasIndex("ordersId");
-
-                    b.ToTable("MLineItemsMOrders");
-                });
-
             modelBuilder.Entity("Models.MCustomer", b =>
                 {
                     b.Property<int>("Id")
@@ -105,10 +90,25 @@ namespace SDL.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("customerId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("locationsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ordersId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("productBarcode")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("customerId");
+
+                    b.HasIndex("locationsId");
+
+                    b.HasIndex("ordersId");
 
                     b.HasIndex("productBarcode");
 
@@ -128,9 +128,6 @@ namespace SDL.Migrations
                     b.Property<int?>("MInventoryId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("MLineItemsId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("MProductBarcode")
                         .HasColumnType("text");
 
@@ -143,8 +140,6 @@ namespace SDL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("MInventoryId");
-
-                    b.HasIndex("MLineItemsId");
 
                     b.HasIndex("MProductBarcode");
 
@@ -211,21 +206,6 @@ namespace SDL.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("MLineItemsMOrders", b =>
-                {
-                    b.HasOne("Models.MLineItems", null)
-                        .WithMany()
-                        .HasForeignKey("lineItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.MOrders", null)
-                        .WithMany()
-                        .HasForeignKey("ordersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Models.MInventory", b =>
                 {
                     b.HasOne("Models.MProduct", "Products")
@@ -243,9 +223,27 @@ namespace SDL.Migrations
 
             modelBuilder.Entity("Models.MLineItems", b =>
                 {
+                    b.HasOne("Models.MCustomer", "customer")
+                        .WithMany()
+                        .HasForeignKey("customerId");
+
+                    b.HasOne("Models.MLocation", "locations")
+                        .WithMany()
+                        .HasForeignKey("locationsId");
+
+                    b.HasOne("Models.MOrders", "orders")
+                        .WithMany("lineItems")
+                        .HasForeignKey("ordersId");
+
                     b.HasOne("Models.MProduct", "product")
                         .WithMany()
                         .HasForeignKey("productBarcode");
+
+                    b.Navigation("customer");
+
+                    b.Navigation("locations");
+
+                    b.Navigation("orders");
 
                     b.Navigation("product");
                 });
@@ -255,10 +253,6 @@ namespace SDL.Migrations
                     b.HasOne("Models.MInventory", null)
                         .WithMany("storeFront")
                         .HasForeignKey("MInventoryId");
-
-                    b.HasOne("Models.MLineItems", null)
-                        .WithMany("locations")
-                        .HasForeignKey("MLineItemsId");
 
                     b.HasOne("Models.MProduct", null)
                         .WithMany("MLocation")
@@ -300,9 +294,12 @@ namespace SDL.Migrations
 
             modelBuilder.Entity("Models.MLineItems", b =>
                 {
-                    b.Navigation("locations");
-
                     b.Navigation("products");
+                });
+
+            modelBuilder.Entity("Models.MOrders", b =>
+                {
+                    b.Navigation("lineItems");
                 });
 
             modelBuilder.Entity("Models.MProduct", b =>

@@ -4,10 +4,11 @@ namespace Models
 {
     public class MOrders
     {
-        public MOrders(double total, int custId, int locationId){
+        public MOrders(double total, int custId, int locationId, DateTime dateTime){
             this.Total = total;
             this.CustID = custId;
             this.LocationID = locationId;
+            this.date = dateTime;
         }
         public MOrders(DateTime orderdate)
         {
@@ -18,7 +19,7 @@ namespace Models
             this.Total = total;
         }
         //Chaining Constructor
-        public MOrders(int id, double total, int custId, int locationId) : this(total, custId,locationId)
+        public MOrders(int id, double total, int custId, int locationId, DateTime dateTime) : this(total, custId,locationId, dateTime)
         {
             this.Id = id;
         }

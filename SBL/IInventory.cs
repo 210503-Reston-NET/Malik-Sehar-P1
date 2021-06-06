@@ -4,12 +4,11 @@ namespace SBL
 {
     public interface IInventory
     {
-        List<MProduct> GetProductsInventory(MInventory inventory);
         List<MInventory> GetInventoryInStore(int id);
         MInventory AddProductInInventory(MInventory mInventory);
         MInventory UpdateInventory(MInventory Inventory);
         MInventory GetInventoryById(int InvId);
         MInventory DeleteInventory(MInventory mInventory);
-        MInventory GetProductExitInInventory(string Barcode);
+        MInventory GetProductExitInInventory(int id, string Barcode);
     }
 }

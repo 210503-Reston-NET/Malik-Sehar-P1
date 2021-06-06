@@ -1,45 +1,47 @@
-﻿@model IEnumerable<StoreWebUI.Models.ProductVM>
+﻿@model IEnumerable<StoreWebUI.Models.InventoryVM>
 
 @{
-    ViewData["Title"] = "Product List";
+    ViewData["Title"] = "Shop Products";
 }
 
-<h1>Index</h1>
-<!--@Html.ActionLink("Add Product","Create", new {Barcode = Model.First().Barcode}) -->
-
+<h1>Shop Products</h1>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Barcode)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Store
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Product
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Barcode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    <!--@Html.ActionLink("Edit", "Edit", new { id = item.Barcode }) |-->
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Barcode })
-                </td>
-                        </tr>
-                }
-                    </tbody>
-                </table>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreFront.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Order", "Order", new { id=item.Id }, new { @class="btn btn-pink"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

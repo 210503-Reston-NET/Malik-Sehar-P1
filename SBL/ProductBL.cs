@@ -10,7 +10,14 @@ namespace SBL
         public ProductBL(IRepository repo){
             _repo = repo;
         }
-
+        public MProduct DeleteAProduct(MProduct mProduct)
+        {
+            return _repo.DeleteAProduct(mProduct);
+        }
+        public MProduct GetProductById(string Barcode)
+        {
+            return _repo.GetProductById(Barcode);
+        }
         public MProduct AddAProduct(MProduct product)
         {
             return _repo.AddProduct(product);
@@ -31,6 +38,11 @@ namespace SBL
         public MProduct searchAProduct(string barcode)
         {
             return _repo.searchAProduct(barcode);
+        }
+
+        public MProduct UpdateProduct(MProduct product)
+        {
+            return _repo.UpdateProduct(product);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SBL;
 using StoreWebUI.Models;
 using Models;
-
+using Serilog;
 namespace StoreWebUI.Controllers
 {
     public class CustomerController : Controller
@@ -20,6 +20,8 @@ namespace StoreWebUI.Controllers
         }
         public ActionResult Index()
         {
+            var myLog = Log.ForContext<CustomerController>();
+            myLog.Information("Customer View List Rendered");
             return View(_icustomerBL.GetAllCustomers().Select(cust => new CustomersVM(cust)).ToList());
         }
 
@@ -28,7 +30,17 @@ namespace StoreWebUI.Controllers
         {
             return View();
         }
-
+        public ActionResult SearchCustomerByPhone()
+        {
+            return View();
+        }
+        public ActionResult SearchCustomerByPhone1(CustomersVM customer)
+        {
+               MCustomer customer1 = new MCustomer(customer.PhoneNum, customer.Password);
+               MCustomer customerSearched = _icustomerBL.searchACustomer(customer1);
+               return View(new CustomersVM(customerSearched));
+            //return RedirectToAction(nameof(Index));
+        }
         // GET: CustomerController/Create
         public ActionResult Create()
         {
@@ -66,17 +78,23 @@ namespace StoreWebUI.Controllers
         // GET: CustomerController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            MCustomer toEdit = _icustomerBL.GetCustomerById(id);
+            return View(new CustomersVM(toEdit));
         }
 
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, CustomersVM customersVM)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _icustomerBL.UpdateCustomer(new MCustomer(customersVM.Id, customersVM.Name, customersVM.PhoneNum, customersVM.Address, customersVM.Password));
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             catch
             {
@@ -87,7 +105,8 @@ namespace StoreWebUI.Controllers
         // GET: CustomerController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            MCustomer toBeDeleted = _icustomerBL.GetCustomerById(id);
+            return View(new CustomersVM(toBeDeleted));
         }
 
         // POST: CustomerController/Delete/5
@@ -97,7 +116,12 @@ namespace StoreWebUI.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _icustomerBL.DeleteCustomer(_icustomerBL.GetCustomerById(id));
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             catch
             {

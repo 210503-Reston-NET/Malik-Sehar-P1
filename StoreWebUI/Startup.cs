@@ -35,6 +35,8 @@ namespace StoreWebUI
             services.AddScoped<ICustomerBL, CustomerBL>();
             services.AddScoped<ILineItem, LineItemBL>();
             services.AddScoped<IInventory, InventoryBL>();
+            services.AddMvc();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +58,7 @@ namespace StoreWebUI
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

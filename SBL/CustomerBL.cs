@@ -21,5 +21,20 @@ namespace SBL
         {
             return _repo.searchACustomer(customer);
         }
+
+        public MCustomer GetCustomerById(int id)
+        {
+            return _repo.GetCustomerById(id);
+        }
+
+        public MCustomer UpdateCustomer(MCustomer customer)
+        {
+           return _repo.UpdateCustomer(customer);
+        }
+
+        public MCustomer DeleteCustomer(MCustomer mCustomer)
+        {
+            return _repo.DeleteCustomer(mCustomer);
+        }
     }
 }

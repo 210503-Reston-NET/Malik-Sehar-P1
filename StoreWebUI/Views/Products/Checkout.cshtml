@@ -1,0 +1,56 @@
+﻿@model IEnumerable<StoreWebUI.Models.LineItemVM>
+
+@{
+    ViewData["Title"] = "Cart";
+}
+@if (ViewBag.cart == null)
+{
+    <h3>Your cart is empty! Please place the order</h3>
+}
+else
+{
+    <h1>Checkout</h1>
+    <a href='@Url.Action("Index", "Location")' class="btn btn-pink pull-right">Continue Shopping</a>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th>
+                    Total
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.cart)
+            {
+            <tr>
+                <td>
+                    @item.product.Name
+                </td>
+                <td>
+                    $@item.product.Price
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+                <td>
+                    @(item.product.Price * item.Quantity)
+                </td>
+                <td><a asp-controller="Products" asp-action="remove" asp-route-id="@item.product.Barcode" class="btn btn-yellow">Remove</a></td>
+            </tr>
+            }
+            <tr><td colspan="5"><h3 class="text-left">Grand Total</h3><p class="text-right" style="margin-top: -40px;">$@ViewBag.Total</p></td></tr>
+        </tbody>
+    </table>
+    <div><a href='@Url.Action("Checkout", new { checkout = true })' class="btn btn-brown pull-right">Checkout</a></div>
+}

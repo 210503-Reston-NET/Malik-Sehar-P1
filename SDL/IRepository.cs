@@ -4,25 +4,40 @@ namespace SDL
 {
     public interface IRepository
     {
-        List<MCustomer> GetAllCustomers();
-        List<MProduct> GetAllProductss();
+        //Location Operations
         MCustomer AddCustomer(MCustomer customer);
-        MProduct AddProduct(MProduct product);
-        MProduct GetAProduct(MProduct product);
         List<MLocation> GetAllLocation();
         MLocation GetAStore(MLocation location);
         MLocation AddStore(MLocation location);
-        List<MInventory> GetProductInStock(MLocation mLocation);
-        List<MProduct> GetProductsInventory(MInventory inventory);
-        MCustomer searchACustomer(MCustomer customer);
-        List<MOrders> GetAllOrders(MLocation searchedOrdersInStore);
-        public void ItemToAddInOrders(MOrders orders);
+        //Inventory Operations
         List<MInventory> GetInventoryInStore(int id);
-        MInventory AddProductInInventory(MInventory mInventory);
         MInventory UpdateInventory(MInventory inventory);
         MInventory GetInventoryById(int id);
         MInventory DeleteInventory(MInventory mInventory);
+        //Products Operations
+        List<MProduct> GetAllProductss();
+        MProduct GetAProduct(MProduct product);
+        MInventory AddProductInInventory(MInventory mInventory);
+        List<MInventory> GetProductInStock(MLocation mLocation);
+        MProduct UpdateProduct(MProduct product);
+        MProduct AddProduct(MProduct product);
         MProduct searchAProduct(string barcode);
-        MInventory GetProductExitInInventory(string Barcode);
+        MInventory GetProductExitInInventory(int id, string Barcode);
+        MProduct GetProductById(string Barcode);
+        MProduct DeleteAProduct(MProduct mProduct);
+        //All Customer Operations
+        List<MCustomer> GetAllCustomers();
+        public MCustomer GetCustomerById(int id);
+        MCustomer UpdateCustomer(MCustomer customer);
+        MCustomer searchACustomer(MCustomer customer);
+        MCustomer DeleteCustomer(MCustomer mCustomer);
+        //All Methods to Get Orders List
+        List<MOrders> GetOrdersWithAllLocations();
+        List<MLineItems> GetAllOrders(int searchedOrdersInStore);
+        List<MOrders> GetOrderByLocationId(int id);
+        public void ItemToAddInOrders(MOrders orders);
+        List<MOrders> GetOrderByCustomerId(int id);
+
+
     }
 }

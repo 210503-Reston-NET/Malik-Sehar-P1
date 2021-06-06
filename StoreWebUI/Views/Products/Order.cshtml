@@ -1,0 +1,45 @@
+﻿@model IEnumerable<StoreWebUI.Models.LineItemVM>
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+<h1>Order</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                Total
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in @ViewBag.CreatedOrder.lineItems) {
+        @ViewBag._openOrder.lineItems
+        <tr>
+            <td>
+                @item.product.Name
+            </td>
+            <td>
+                $@item.product.Price
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+               $@ViewBag.CreatedOrder.Total
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SBL;
+using LearnASPNETCoreMVCWithRealApps.Helpers;
 
 namespace StoreWebUI.Controllers
 {
@@ -14,23 +15,117 @@ namespace StoreWebUI.Controllers
     {
         private IProductBL _IproductBL;
         private IInventory _inventory;
+        private ILineItem _iLineItem;
+        private MOrders _openOrder;
         // GET: ProductsController
-        public ProductsController( IProductBL productBL, IInventory inventory)
+        public ProductsController( IProductBL productBL, IInventory inventory, ILineItem lineItem)
         {
             _IproductBL = productBL;
             _inventory = inventory;
-        }
-        public ActionResult Index()
-        {
-            return View(_IproductBL.GetAllProducts().Select(pro => new ProductVM(pro)).ToList());
+            _iLineItem = lineItem;
         }
 
-        // GET: ProductsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Index(int id)
         {
-            return View();
+            List<MInventory> listInv = _inventory.GetInventoryInStore(id);
+            return View(listInv.Select(pro => new InventoryVM(pro)).ToList());
         }
+        public ActionResult Order(int id)
+        {
+            MInventory inventory = _inventory.GetInventoryById(id);
+            MProduct productSelected = _IproductBL.searchAProduct(inventory.ProductId);
+            if (inventory.Quantity > 0)
+            {
+                _openOrder = new MOrders
+                {
+                    Total = 0,
+                    CustID = 1,
+                    LocationID = inventory.StoreId
+                };
+                if (SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart") == null)
+                {
+                    List<MLineItems> cart = new List<MLineItems>();
+                    MLineItems lineI = new MLineItems(productSelected.Barcode, 1);
+                    lineI.product = productSelected;
+                    cart.Add(lineI);
+                    _openOrder.lineItems = cart;
+                    _openOrder.UpdateTotal();
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                }
+                else
+                {
+                    List<MLineItems> cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
+                    int index = isExist(inventory.ProductId);
+                    if (index != -1)
+                    {
+                        _openOrder.lineItems = cart;
+                        cart[index].Quantity++;
+                        _openOrder.UpdateTotal();
+                    }
+                    else
+                    {
+                        MLineItems lineI = new MLineItems(productSelected.Barcode, 1);
+                        lineI.product = productSelected;
+                        _openOrder.lineItems = cart;
+                        _openOrder.UpdateTotal();
+                        cart.Add(lineI);
+                    }
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                }
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "order", _openOrder);
+                return RedirectToAction("Checkout", new { checkout = false });
+            }
+            else
+            {
+                return RedirectToAction("Index", new { id = inventory.StoreId });
+            }
 
+        }
+        private int isExist(string id)
+        {
+            List<MLineItems> cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
+            for (int i = 0; i < cart.Count; i++)
+            {
+                if (cart[i].product.Barcode.Equals(id))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        [Route("remove/{id}")]
+        public IActionResult Remove(string id)
+        {
+            List<MLineItems> cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
+            int index = isExist(id);
+            cart.RemoveAt(index);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return RedirectToAction("Checkout", new { checkout= false });
+        }
+        public ActionResult Checkout(bool checkout)
+        {
+            var cart = SessionHelper.GetObjectFromJson<List<MLineItems>>(HttpContext.Session, "cart");
+            ViewBag.cart = cart;
+            var order = SessionHelper.GetObjectFromJson<MOrders>(HttpContext.Session, "order");
+            if (cart == null)
+            {
+                return View();
+            }
+                ViewBag.order = order;
+                var grandTotal = cart.Sum(item => item.product.Price * item.Quantity);
+                ViewBag.Total = grandTotal;
+                order.Total = grandTotal;
+            if (cart != null && checkout == false)
+            {
+                return View();
+            }
+            else
+            {
+                _iLineItem.ItemToAddInOrders(order);
+                HttpContext.Session.Clear();
+                return RedirectToAction("Index", "Location");
+            }
+        }
         // GET: ProductsController/Create
         public ActionResult Create()
         {
@@ -47,7 +142,7 @@ namespace StoreWebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if(_inventory.GetProductExitInInventory(productVM.Barcode) == null)
+                    if(_inventory.GetProductExitInInventory(id, productVM.Barcode) == null)
                     {
                         _inventory.AddProductInInventory(new MInventory
                         {
@@ -75,40 +170,50 @@ namespace StoreWebUI.Controllers
         }
 
         // GET: ProductsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string barcode)
         {
-            return View();
+            MProduct toEdit = _IproductBL.GetProductById(barcode);
+            return View(new ProductVM(toEdit));
         }
 
         // POST: ProductsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(string barcode, ProductVM productVM)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _IproductBL.UpdateProduct(new MProduct(productVM.Barcode, productVM.Name, productVM.Price));
+                    return RedirectToAction(nameof(ViewAllProducts));
+                }
+                return View();
             }
             catch
             {
                 return View();
             }
         }
-
-        // GET: ProductsController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult ViewAllProducts()
         {
-            return View();
+            return View(_IproductBL.GetAllProducts().Select(product => new ProductVM(product)).ToList());
+        }
+        // GET: ProductsController/Delete/5
+        public ActionResult Delete(string id)
+        {
+            return View(new ProductVM(_IproductBL.GetProductById(id)));
         }
 
         // POST: ProductsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _IproductBL.DeleteAProduct(_IproductBL.GetProductById(id));
+                return RedirectToAction(nameof(ViewAllProducts));
             }
             catch
             {

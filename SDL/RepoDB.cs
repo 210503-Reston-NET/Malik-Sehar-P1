@@ -41,6 +41,12 @@ namespace SDL
             _context.SaveChanges();
             return product;
         }
+        public MProduct UpdateProduct(MProduct product)
+        {
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            return product;
+        }
 
         public MLocation AddStore(MLocation location)
         {
@@ -61,6 +67,38 @@ namespace SDL
                 customer => new MCustomer(customer.Id, customer.Name, customer.PhoneNo, customer.Address, customer.Password)
             ).ToList();
         }
+        public MCustomer UpdateCustomer(MCustomer customer)
+        {
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return customer;
+        }
+        public List<MOrders> GetOrdersWithAllLocations()
+        {
+            return _context.Orders
+            .Select(
+                order => new MOrders { 
+                    Id = order.Id,
+                    Total = order.Total,
+                    CustID = order.CustID,
+                    LocationID = order.LocationID,
+                    date = order.date
+                }
+            ).ToList();
+        }
+        public MCustomer GetCustomerById(int id)
+        {
+            MCustomer customerExists = _context.Customers.FirstOrDefault(cus => cus.Id == id);
+            if (customerExists == null) return null;
+            return new MCustomer(customerExists.Id, customerExists.Name, customerExists.PhoneNo, customerExists.Address, customerExists.Password);
+        }
+        public MLocation GetLocationById(int id)
+        {
+            MLocation locationExists = _context.Locations.FirstOrDefault(loc => loc.Id == id);
+            if (locationExists == null) return null;
+            return new MLocation(locationExists.Id, locationExists.Name, locationExists.Address);
+        }
+        
         public List<MLocation> GetAllLocation()
         {
             return _context.Locations.Select(
@@ -70,29 +108,96 @@ namespace SDL
                             locat.Address)
                 ).ToList();
         }
-
-        public List<MOrders> GetAllOrders(MLocation searchedOrdersInStore)
+        public List<MOrders> GetOrderByCustomerId(int id)
         {
-            List<MOrders> result = (
-                from o in _context.Orders
-                join c in _context.Customers on o.CustID equals c.Id
-                join l in _context.Locations on o.storeFronts.Id equals l.Id
-                where o.storeFronts.Id.Equals(searchedOrdersInStore.Id)
-                select new MOrders()
+            /*List<MOrders> mOrders = _context.Orders.Select(
+                order => new MOrders()
+                {
+                    Id = order.Id,
+                    CustID = order.CustID,
+                    LocationID = order.LocationID,
+                    date = order.date,
+                    storeFronts = order.storeFronts,
+                    customer = order.customer,
+                    lineItems = _context.LineItems.Select(
+                        orderitem => new MLineItems()
+                        {
+                            OrderID = orderitem.OrderID,
+                            ProId = orderitem.ProId,
+                            Quantity = orderitem.Quantity,
+                            product = _context.Products.Select(pro => new MProduct
+                            {
+                                Barcode = pro.Barcode,
+                                Name = pro.Name,
+                                Price = pro.Price,
+                            }).Where(p => p.Barcode == orderitem.ProId).FirstOrDefault(),
+                            orders = orderitem.orders
+                        }).Where(o => o.OrderID == order.Id).ToList(),
+                    Total = order.Total
+
+                }
+            ).OrderBy(item => item.date).Where(order => order.CustID == id).ToList();*/
+
+            List<MOrders> mOrders =
+                (from o in _context.Orders
+                join l in _context.Locations on o.LocationID equals l.Id
+                where o.CustID.Equals(id)
+                select new MOrders
                 {
                     Id = o.Id,
-                    Total = o.Total,
-                    customer = new MCustomer()
-                    {
-                        Name = c.Name,
-                        PhoneNo = c.PhoneNo,
-                        Address = c.Address
+                    CustID = o.CustID,
+                    LocationID = o.LocationID,
+                    date = o.date,
+                    storeFronts = new MLocation { 
+                    Id = l.Id,
+                    Name=l.Name,
+                    Address = l.Address
                     },
-                    storeFronts = new MLocation()
+                    Total = o.Total
+                }).ToList();
+            return mOrders;
+        }
+        public List<MOrders> GetOrderByLocationId(int id)
+        {
+            List<MOrders> mOrders = 
+                (from o in _context.Orders
+                    join l in _context.Locations on o.LocationID equals l.Id
+                    where o.LocationID.Equals(id)
+                    select new MOrders
                     {
-                        Name = l.Name,
-                        Address = l.Address
-                    }
+                        Id = o.Id,
+                        CustID = o.CustID,
+                        LocationID = o.LocationID,
+                        date = o.date,
+                        storeFronts = new MLocation
+                        {
+                            Id = l.Id,
+                            Name = l.Name,
+                            Address = l.Address
+                        },
+                        Total = o.Total
+                    }).ToList();
+            return mOrders;
+        }
+        public List<MLineItems> GetAllOrders(int searchedListItemsByOrderId)
+        {
+            List<MLineItems> result = (
+                from li in _context.LineItems
+                join o in _context.Orders on li.OrderID equals o.Id
+                join p in _context.Products on li.ProId equals p.Barcode
+                where li.OrderID.Equals(searchedListItemsByOrderId)
+                select new MLineItems
+                {
+                    Id = li.Id,
+                    OrderID = o.Id,
+                    ProId = p.Barcode,
+                    Quantity = li.Quantity,
+                    product = new MProduct
+                    {
+                        Barcode = p.Barcode,
+                        Name = p.Name,
+                        Price = p.Price
+                    },
                 }
             ).ToList();
             return result;
@@ -128,15 +233,6 @@ namespace SDL
                     Quantity = invent.Quantity
                 }
             ).ToList();
-        }
-        List<MLocation> GetStoreById(int id)
-        {
-            return _context.Locations.Where(s => s.Id == id).Select(store => new MLocation
-            {
-                Id = store.Id,
-                Name = store.Name,
-                Address = store.Address
-            }).ToList();
         }
 
         public MInventory UpdateInventory(MInventory inventory)
@@ -175,19 +271,6 @@ namespace SDL
                     }).ToList();
         }
 
-        public List<MProduct> GetProductsInventory(MInventory inventory)
-        {
-            return _context.Products.Where(pro => pro.Barcode == inventory.ProductId).Select(
-                prod =>
-                new MProduct
-                {
-                    Barcode = prod.Barcode,
-                    Name = prod.Name,
-                    Price = prod.Price
-                }
-            ).ToList();
-        }
-
         public void ItemToAdd(int orderid, List<MLineItems> lineItems)
         {
             foreach (MLineItems item in lineItems)
@@ -203,29 +286,43 @@ namespace SDL
             }
             _context.SaveChanges();
         }
-        // public void ItemToUpdateInventory(MOrders orders){
-        //     Entity.Inventory inventory = new Entity.Inventory{
 
-        //     }
-        // }
         public void ItemToAddInOrders(MOrders orders)
         {
+            //ItemToUpdateInventory(orders);
             MOrders newOrder = new MOrders
             {
                 CustID = orders.CustID,
                 LocationID = orders.LocationID,
-                Total = orders.Total
+                Total = orders.Total,
+                date = DateTime.Now
             };
             try
             {
                 MOrders AddedOrded = _context.Orders.Add(newOrder).Entity;
                 _context.SaveChanges();
                 ItemToAdd(AddedOrded.Id, orders.lineItems);
-                // ItemToUpdateInventory(orders);
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        private void ItemToUpdateInventory(MOrders orders)
+        {
+            
+            foreach (MLineItems order in orders.lineItems)
+            {
+              if(GetProductExitInInventory(order.locations.Id,order.ProId) != null){
+                    UpdateInventory(new MInventory
+                    {
+                        Id = GetInventoryById(GetProductExitInInventory(order.locations.Id,order.ProId).Id).Id,
+                        StoreId = orders.LocationID,
+                        ProductId = order.ProId,
+                        Quantity = GetInventoryById(GetProductExitInInventory(order.locations.Id,order.ProId).Id).Quantity - order.Quantity
+                    });
+              }
             }
         }
 
@@ -233,7 +330,7 @@ namespace SDL
         {
             MCustomer found = _context.Customers.FirstOrDefault(pro => pro.PhoneNo == customer.PhoneNo);
             if (found == null) return null;
-            return new MCustomer(found.Name, found.PhoneNo, found.Address, found.Password);
+            return new MCustomer(found.Id, found.Name, found.PhoneNo, found.Address, found.Password);
         }
 
         public MProduct searchAProduct(string barcode)
@@ -261,15 +358,9 @@ namespace SDL
             if (found == null) return null;
             return new MInventory(found.Id, found.StoreId, found.ProductId, found.Quantity);
         }
-        public void DeleteAProduct(string barcode)
+        public MInventory GetProductExitInInventory(int id, string Barcode)
         {
-            MProduct toBeDeleted = _context.Products.First(pro => pro.Barcode == barcode);
-            _context.Products.Remove(toBeDeleted);
-            _context.SaveChanges();
-        }
-        public MInventory GetProductExitInInventory(string Barcode)
-        {
-            MInventory AlreadyExits =  _context.Inventories.FirstOrDefault(invPro => invPro.ProductId == Barcode);
+            MInventory AlreadyExits =  _context.Inventories.FirstOrDefault(invPro => invPro.ProductId == Barcode && invPro.StoreId == id);
             if (AlreadyExits == null) return null;
             return new MInventory(AlreadyExits.Id, AlreadyExits.StoreId, AlreadyExits.ProductId, AlreadyExits.Quantity);
         }
@@ -282,6 +373,26 @@ namespace SDL
             _context.Inventories.Remove(toBeDeleted);
             _context.SaveChanges();
             return mInventory;
+        }
+        public MCustomer DeleteCustomer(MCustomer mCustomer)
+        {
+            MCustomer cusToBeDeleted = _context.Customers.First(cus => cus.Id == mCustomer.Id);
+            _context.Customers.Remove(cusToBeDeleted);
+            _context.SaveChanges();
+            return mCustomer;
+        }
+
+        public MProduct GetProductById(string Barcode)
+        {
+            return _context.Products.Find(Barcode);
+        }
+
+        public MProduct DeleteAProduct(MProduct mProduct)
+        {
+            MProduct toBeDeleted = _context.Products.First(pro => pro.Barcode == mProduct.Barcode);
+            _context.Products.Remove(toBeDeleted);
+            _context.SaveChanges();
+            return mProduct;
         }
     }
 }

@@ -17,9 +17,10 @@ namespace Models
         public string ProId {get; set;}
         public int OrderID {get; set;}
         public int Quantity {get; set;}
-        public List<MOrders> orders {get; set;}
+        public MOrders orders {get; set;}
+        public MCustomer customer { get; set; }
         public MProduct product {get; set;}
         public List<MProduct> products {get; set;}
-        public List<MLocation> locations {get; set;}
+        public MLocation locations {get; set;}
     }
 }
