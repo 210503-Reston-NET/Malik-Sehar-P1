@@ -19,7 +19,7 @@ steps:
     SonarCloud: 'SonarCloudChocolateFactory'
     organization: '210503-reston-net'
     scannerMode: 'MSBuild'
-    projectKey: '210503-reston-net_Malik-Sehar-P1'
+    projectKey: '210503-Reston-NET_Malik-Sehar-P1'
     projectName: 'Malik-Sehar-P1'
 - task: DotNetCoreCLI@2
   displayName: Restore
