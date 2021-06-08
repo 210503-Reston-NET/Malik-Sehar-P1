@@ -41,7 +41,7 @@ steps:
 - task: SonarCloudAnalyze@1
   displayName: Sonar code Analysis
 - task: SonarCloudPublish@1
-  displayName: Publish Code Analysis
+  displayName: Publish code analysis
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
