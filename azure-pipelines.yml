@@ -39,7 +39,7 @@ steps:
         command: 'test'
         projects: '**/STests/STests.csproj'
 - task: SonarCloudAnalyze@1
-  displayName: Run Code Analysis
+  displayName: Sonar code Analysis
 - task: SonarCloudPublish@1
   displayName: Publish Code Analysis
 - task: DotNetCoreCLI@2
